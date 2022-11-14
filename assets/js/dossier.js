@@ -275,6 +275,7 @@ function add_row_select(row) {
                         row_select1 += '<div class="form-group row">';
                         row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">' + this.nom_champs + ' :</label>';
                         row_select1 += '<input type="text" name="nom_champ[]" value="' + this.nom_champs + ' " class="d-none"> ';
+                        row_select1 += '<input type="text" name="id_champs[]"  value="' + this.id + ' " class="d-none"> ';
                         row_select1 += '<input type="text" name="type_champ[]" value="date" class="d-none"> <div class="col-sm-6">';
                         row_select1 += ' <input class="form-control" type="date" name="valeur[]" required>';
 
@@ -289,6 +290,7 @@ function add_row_select(row) {
                         row_select1 += '<div class="form-group row">';
                         row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">' + this.nom_champs + ' :</label>';
                         row_select1 += '<input type="text" name="nom_champ_file[]" value="' + this.nom_champs + ' " class="d-none"> ';
+                        row_select1 += '<input type="text" name="id_champs[]"  value=" " class="d-none"> ';
                         row_select1 += '<div class="col-sm-6">';
                         row_select1 += ' <input required class="form-control controle_file" type="file" name="file[]" placeholder="Choose file" id="file" onchange="load_name_File(event,' + this.id + ');"> ';
 
@@ -314,7 +316,7 @@ function add_row_select(row) {
                     row_select1 += '<div class="form-group row">';
                     row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">'+nom_champs+' :</label>';
                     row_select1 += '<input type="text" name="nom_champ[]"  value="'+nom_champs+' " class="d-none"> ';
-                    row_select1 += '<input type="text" name="id_champs[]"  value="" class="d-none"> ';
+                    row_select1 += '<input type="text" name="id_champs[]"  value=" " class="d-none"> ';
                     row_select1 += '<input type="text" name="type_champ[]" value="text" class="d-none"> <div class="col-sm-6">';
                     row_select1 += ' <input class="form-control" type="text" name="valeur[]" required>';
                 

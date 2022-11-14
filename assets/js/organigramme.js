@@ -800,7 +800,7 @@ $(document).ready(function() {
 
                         if(data.etat){
                         
-                          fill_treeview();
+                          
                       
                           $('#treeview_form')[0].reset();
                           alert('ajouter aves succes');
@@ -812,6 +812,7 @@ $(document).ready(function() {
                           }, 2000);
       
                           unset_table()
+                          fill_treeview();
                         }
 
                         }
