@@ -57,7 +57,7 @@ Route::get('/all_user', [App\Http\Controllers\UserController::class, 'all_user']
 Route::post('/remove_entite', [App\Http\Controllers\OrganigrammeController::class, 'remove_entite']);
 
 Route::post('/array_organigramme', [App\Http\Controllers\OrganigrammeController::class, 'array_organigramme'])->name('test_ajax');
-
+Route::post('/add_dosier_array_organigramme', [App\Http\Controllers\OrganigrammeController::class, 'add_dosier_array_organigramme']);
 Route::post('/fill_drop_down', [App\Http\Controllers\OrganigrammeController::class, 'all_data_select'])->name('array_drop_down');
 Route::post('/fill_drop_down_dossier', [App\Http\Controllers\OrganigrammeController::class, 'fill_drop_down_dossier']);
 

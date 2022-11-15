@@ -90,11 +90,11 @@ class OrganigrammeController extends Controller
                     $sub_array['id_node'] = $dossier_parent[$i]->parent_id;
                     if (count($check_attributs) == 0)
                     {
-                        $sub_array['text'] = $dossier_parent[$i]->nom_champs . '<a href="" class="prevent-default" onClick="removeRow(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_delete"> delete </span></a><a href="" class="prevent-default" data-toggle="modal" data-target="#panel_name_dossier" onClick="edit_name_dossier(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_edit_name  mr-3"> drive_file_rename_outline </span></a> ';
+                        $sub_array['text'] = $dossier_parent[$i]->nom_champs . '<a href="" class="prevent-default" onClick="removeRow(event,'. $dossier_parent[$i]->id .','. $dossier_parent[$i]->entite_id .','. $dossier_parent[$i]->organigramme_id .' )" ><span    class="material-icons btn_delete"> delete </span></a><a href="" class="prevent-default" data-toggle="modal" data-target="#panel_name_dossier" onClick="edit_name_dossier(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_edit_name  mr-3"> drive_file_rename_outline </span></a> ';
                     }
                     else
                     {
-                        $sub_array['text'] = $dossier_parent[$i]->nom_champs . '<a href="" class="prevent-default" onClick="removeRow(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_delete"> delete </span></a><a href="" class="prevent-default" data-toggle="modal" data-target="#panel_attributs" onClick="editRow_organi(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_edit"> border_color </span></a> <a href="" class="prevent-default" data-toggle="modal" data-target="#panel_name_dossier" onClick="edit_name_dossier(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_edit_name  mr-3"> drive_file_rename_outline </span></a>';
+                        $sub_array['text'] = $dossier_parent[$i]->nom_champs . '<a href="" class="prevent-default" onClick="removeRow(event,'. $dossier_parent[$i]->id .','. $dossier_parent[$i]->entite_id .','. $dossier_parent[$i]->organigramme_id .' )" ><span    class="material-icons btn_delete"> delete </span></a><a href="" class="prevent-default" data-toggle="modal" data-target="#panel_attributs" onClick="editRow_organi(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_edit"> border_color </span></a> <a href="" class="prevent-default" data-toggle="modal" data-target="#panel_name_dossier" onClick="edit_name_dossier(event,' . $dossier_parent[$i]->id . ' )" ><span    class="material-icons btn_edit_name  mr-3"> drive_file_rename_outline </span></a>';
                     }
 
                     $sub_array['nodes'] = array_values($this->get_node_data($dossier_parent[$i]->id, $organigramme_id, $entite_organigramme));
@@ -225,12 +225,52 @@ class OrganigrammeController extends Controller
 
                 }
                 $output[] = array(
+                    'id_entite' => $entite->id,
                     'name_entite' => $entite->nom,
                     'dossiers' => $data
                 );
             }
 
         }
+
+        return Response()->json($output);
+
+    }
+
+    public function add_dosier_array_organigramme(Request $request)
+    {
+
+        $parent_id = 0;
+        $organigramme_id = 1;
+        $all_dossier = Dossier_champ::all();
+
+        $organigramme_id = $request->input('organigramme_id');
+        $entite_id = $request->input('entite');
+        //$all_entite = Entite::where('organigramme_id', '=', $organigramme_id)->get();
+        //$entite = Entite::query()->where(['organigramme_id' => $organigramme_id, 'entite_id' => $entite_id ])->get();
+        $entite = Entite::find($entite_id);
+        $data = array();
+
+        
+
+            if (Dossier_champ::where('entite_id', '=', $entite_id)
+                ->count() > 0)
+            {
+
+                foreach ($all_dossier as $row)
+                {
+
+                    $data = $this->get_node_data($parent_id, $organigramme_id, $entite_id);
+
+                }
+                $output[] = array(
+                    'id_entite' => $entite_id,
+                    'name_entite' => $entite->nom,
+                    'dossiers' => $data
+                );
+            }
+
+        
 
         return Response()->json($output);
 
@@ -554,8 +594,13 @@ class OrganigrammeController extends Controller
 
         }
 
+        $id_entite= $request->input('select_entite');
+        $id_organigramme=$request->input('id_organigramme');
+
         return Response()
-            ->json(['etat' => $check_add, 'check_sub_dossier' => $check, 'type_dossier' => $type_dossier, 'piece_joint' => $piece_joint, 'piece_have_att' => $check_have_att]);
+            ->json(['etat' => $check_add, 'check_sub_dossier' => $check, 'type_dossier' => $type_dossier,
+             'piece_joint' => $piece_joint, 'piece_have_att' => $check_have_att,
+             'id_entite' => $id_entite ,  'id_organigramme' => $id_organigramme ]);
 
     }
 
@@ -801,6 +846,15 @@ class OrganigrammeController extends Controller
 
         $delete = Entite::find($request->id_entite);
         $delete->delete();
+
+        $les_dossiers = Dossier_champ::where('entite_id', '=', $request->id_entite)->get();
+        for ($i = 0;$i < count($les_dossiers);$i++)
+        {
+
+            $delete_dossier = Dossier_champ::find($les_dossiers[$i]->id);
+            $delete_dossier->delete();
+
+        }
 
         return Response()
         ->json(['etat' => true]);
