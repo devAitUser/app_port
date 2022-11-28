@@ -61,11 +61,9 @@ class HomeController extends Controller
             $projet_select_id = $user->projet_select_id;
 
             $organigramme = Organigramme::find($projet_select_id);
-            if ( !is_null($organigramme) ){
-                $dossiers = $organigramme->dossiers;
-                $nom_projet = $organigramme->nom;
-
-                $Count = $dossiers->count();
+            $dossiers = $organigramme->dossiers;
+            $nom_projet = $organigramme->nom;
+            $Count = $dossiers->count();
 
             $ckeck_select = true;
 
@@ -93,13 +91,6 @@ class HomeController extends Controller
                     
 
                 }
-
-                
-            }
-
-            
-           
-            
 
             
           

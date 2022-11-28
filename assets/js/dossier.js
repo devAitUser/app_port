@@ -275,7 +275,6 @@ function add_row_select(row) {
                         row_select1 += '<div class="form-group row">';
                         row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">' + this.nom_champs + ' :</label>';
                         row_select1 += '<input type="text" name="nom_champ[]" value="' + this.nom_champs + ' " class="d-none"> ';
-                        row_select1 += '<input type="text" name="id_champs[]"  value="' + this.id + ' " class="d-none"> ';
                         row_select1 += '<input type="text" name="type_champ[]" value="date" class="d-none"> <div class="col-sm-6">';
                         row_select1 += ' <input class="form-control" type="date" name="valeur[]" required>';
 
@@ -290,7 +289,6 @@ function add_row_select(row) {
                         row_select1 += '<div class="form-group row">';
                         row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">' + this.nom_champs + ' :</label>';
                         row_select1 += '<input type="text" name="nom_champ_file[]" value="' + this.nom_champs + ' " class="d-none"> ';
-                        row_select1 += '<input type="text" name="id_champs[]"  value=" " class="d-none"> ';
                         row_select1 += '<div class="col-sm-6">';
                         row_select1 += ' <input required class="form-control controle_file" type="file" name="file[]" placeholder="Choose file" id="file" onchange="load_name_File(event,' + this.id + ');"> ';
 
@@ -307,46 +305,6 @@ function add_row_select(row) {
 
 
                 });
-
-
-                for (let index = 0; index < coordonnees.length; index++) {
-                    var nom_champs = coordonnees[index];
-        
-                    row_select1 = '<div id="" class="col-md-12">';
-                    row_select1 += '<div class="form-group row">';
-                    row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">'+nom_champs+' :</label>';
-                    row_select1 += '<input type="text" name="nom_champ[]"  value="'+nom_champs+' " class="d-none"> ';
-                    row_select1 += '<input type="text" name="id_champs[]"  value=" " class="d-none"> ';
-                    row_select1 += '<input type="text" name="type_champ[]" value="text" class="d-none"> <div class="col-sm-6">';
-                    row_select1 += ' <input class="form-control" type="text" name="valeur[]" required>';
-                
-                  
-                    row_select1 += '</div></div>';
-                    row_select1 += '</div>';
-        
-                    $("#attribut_champ").append(row_select1);
-                    
-                  }
-      
-                  var vesrion= " dispose d&#039;une version physique";
-      
-                  row_select1 = '<div id="" class="col-md-12">';
-                  row_select1 += '<div class="form-group row">';
-                  row_select1 += " <label for='colFormLabelSm' class=' text-uppercase col-sm-6 col-form-label col-form-label-sm'>dispose d'une version physique :</label>";
-                  row_select1 += "<input type='text' name='nom_champ[]'  value='"+vesrion+"' class='d-none'> ";
-                  row_select1 += '<input type="text" name="id_champs[]"  value="" class="d-none"> ';
-                  row_select1 += '<input type="text" name="type_champ[]" value="text" class="d-none" required> <div class="col-sm-6">';
-      
-              
-                  row_select1 += '<div class="form-check form-switch">';
-                  row_select1 += ' <input class="form-check-input"  type="checkbox" id="version_physique_btn" onclick="fonction_checkbox()" >';
-                  row_select1 += '<input type="text" id="VERSION_PHYSIQUE" class="d-none" name="valeur[]" value="NON" >';
-                  row_select1 += '</div>';
-      
-                  row_select1 += '</div></div>';
-                  row_select1 += '</div>';
-      
-                  $("#attribut_champ").append(row_select1);
 
 
 
@@ -376,7 +334,7 @@ function fill_parent_dossier() {
         }
     });
     $.ajax({ 
-        url: APP_URL + "/fill_parent_dossier",
+        url: APP_URL + "/fill_parent_dossier_consulter",
         method: "get",
         dataType: "json",
         success: function(data) {
@@ -487,7 +445,7 @@ $(document).ready(function() {
           }
       });
       $.ajax({
-          url: APP_URL + "/fill_parent_dossier",
+          url: APP_URL + "/fill_parent_dossier_consulter",
           method: "get",
           dataType: "json",
           data: {

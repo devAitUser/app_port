@@ -37,9 +37,6 @@ Route::get('/url_dossier/{id}', function ($id) {
 
 
 
-
-
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

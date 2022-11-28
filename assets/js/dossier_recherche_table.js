@@ -116,10 +116,7 @@ $(document).ready(function() {
             "next": "Suivante",
             "previous": "PrÃ©cÃ©dente"
         },
-    
-        "oLanguage": {
-          "sUrl": APP_URL+"/assets/fr-FR.json"
-         },
+        "language": langue_table,
            
             
             columnDefs: [
@@ -206,7 +203,7 @@ $(document).ready(function() {
                    "previous": "PrÃ©cÃ©dente"
                },
                "oLanguage": {
-                "sUrl": APP_URL+"/assets/fr-FR.json"
+                   "sUrl": "/assets/fr-FR.json"
                },
                  "columns": [
                    

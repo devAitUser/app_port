@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Organigramme;
 use App\Models\Projet;
-use App\Models\Entite;
 use App\Models\Projet_modifier;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -151,24 +150,22 @@ class UserController extends Controller
             $id_organigramme = $project[$i]->organigrammes_id;
             $nom_organigrammes = $organigramme->nom;
             $dossiers = json_decode($project[$i]->dossiers, true);
-            
-
-            
-            for($j=0;$j<count($organigramme->dossier_champ);$j++){
-
-                $entite = Entite::find($organigramme->dossier_champ[$j]['entite_id']);
-                $les_dossiers[] = array( 'id' => $organigramme->dossier_champ[$j]['id'] , 'parent_id' => $organigramme->dossier_champ[$j]['parent_id'] , 'nom_champs' => $organigramme->dossier_champ[$j]['nom_champs'] , 'nom_entite' => $entite->nom );
-
-
-            }
-
-            $les_projets[] = array('id' => $id_organigramme ,'nom_organigrammes' => $nom_organigrammes,'dossiers_select' => $dossiers , 'dossiers' => $les_dossiers   );
+        
+            $les_projets[] = array('id' => $id_organigramme ,'nom_organigrammes' => $nom_organigrammes,'dossiers_select' => $dossiers , 'dossiers' => $organigramme->dossier_champ );
             $count_projet++;
           }
 
 
           
-       
+        for($i=0;$i<count($projet_modifier);$i++){
+            $organigramme=Organigramme::find($projet_modifier[$i]->organigrammes_id );
+            $id_organigramme = $projet_modifier[$i]->organigrammes_id;
+            $nom_organigrammes = $organigramme->nom;
+            $dossiers = json_decode($projet_modifier[$i]->dossiers, true);
+        
+            $les_projet_modifier[] = array('id' => $id_organigramme ,'nom_organigrammes' => $nom_organigrammes,'dossiers_select' => $dossiers , 'dossiers' => $organigramme->dossier_champ );
+            
+          }
 
 
 

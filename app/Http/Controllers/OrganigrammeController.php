@@ -214,9 +214,7 @@ class OrganigrammeController extends Controller
         foreach ($all_entite as $entite)
         {
 
-            if (Dossier_champ::where('entite_id', '=', $entite->id)
-                ->count() > 0)
-            {
+            $all_dossier = Dossier_champ::query()->where(['organigramme_id' => $organigramme_id, 'entite_id' => $entite->id ])->get();
 
                 foreach ($all_dossier as $row)
                 {
@@ -229,7 +227,7 @@ class OrganigrammeController extends Controller
                     'name_entite' => $entite->nom,
                     'dossiers' => $data
                 );
-            }
+            
 
         }
 
@@ -237,21 +235,25 @@ class OrganigrammeController extends Controller
 
     }
 
+
+
     public function add_dosier_array_organigramme(Request $request)
     {
 
         $parent_id = 0;
-        $organigramme_id = 1;
-        $all_dossier = Dossier_champ::all();
-
+        
         $organigramme_id = $request->input('organigramme_id');
         $entite_id = $request->input('entite');
-        //$all_entite = Entite::where('organigramme_id', '=', $organigramme_id)->get();
-        //$entite = Entite::query()->where(['organigramme_id' => $organigramme_id, 'entite_id' => $entite_id ])->get();
+
         $entite = Entite::find($entite_id);
         $data = array();
+        $output = array(
+            'id_entite' => $entite_id,
+            'name_entite' => $entite->nom,
+            'dossiers' => array()
+        );
 
-        
+        $all_dossier = Dossier_champ::query()->where(['organigramme_id' => $organigramme_id, 'entite_id' => $entite->id ])->get();
 
             if (Dossier_champ::where('entite_id', '=', $entite_id)
                 ->count() > 0)
@@ -263,7 +265,7 @@ class OrganigrammeController extends Controller
                     $data = $this->get_node_data($parent_id, $organigramme_id, $entite_id);
 
                 }
-                $output[] = array(
+                $output = array(
                     'id_entite' => $entite_id,
                     'name_entite' => $entite->nom,
                     'dossiers' => $data
@@ -377,9 +379,8 @@ class OrganigrammeController extends Controller
 
                 if ($row["parent_id"] == 0)
                 {
-                    $nom_entite = Entite::find($row["entite_id"]);
 
-                    $ajax_option .= '<option value="' . $row["id"] . '">' . $row["nom_champs"] . ' <-'.$nom_entite->nom.'</option>';
+                    $ajax_option .= '<option value="' . $row["id"] . '">' . $row["nom_champs"] . '</option>';
                 }
 
             }
@@ -846,15 +847,6 @@ class OrganigrammeController extends Controller
 
         $delete = Entite::find($request->id_entite);
         $delete->delete();
-
-        $les_dossiers = Dossier_champ::where('entite_id', '=', $request->id_entite)->get();
-        for ($i = 0;$i < count($les_dossiers);$i++)
-        {
-
-            $delete_dossier = Dossier_champ::find($les_dossiers[$i]->id);
-            $delete_dossier->delete();
-
-        }
 
         return Response()
         ->json(['etat' => true]);

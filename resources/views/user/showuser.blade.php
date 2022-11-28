@@ -164,25 +164,42 @@
                                     <?php if ($les_projets[$i]['dossiers'][$j]['parent_id'] == 0){  ?>
                                        <?php if (is_array_empty($les_projets[$i]['dossiers_select'])){  ?>
                                           <?php if (in_array($les_projets[$i]['dossiers'][$j]['id'], $les_projets[$i]['dossiers_select'])) {  ?>
-                                          <option value="<?php echo $les_projets[$i]['dossiers'][$j]['id']; ?>" selected><?php echo $les_projets[$i]['dossiers'][$j]['nom_champs'].'<-'.$les_projets[$i]['dossiers'][$j]['nom_entite']; ?> </option>
+                                          <option value="<?php echo $les_projets[$i]['dossiers'][$j]['id']; ?>" selected><?php echo $les_projets[$i]['dossiers'][$j]['nom_champs']; ?></option>
                                           <?php  } else { ?>
-                                          <option value="<?php echo $les_projets[$i]['dossiers'][$j]['id']; ?>" > <?php echo $les_projets[$i]['dossiers'][$j]['nom_champs'].'<-'.$les_projets[$i]['dossiers'][$j]['nom_entite']; ?> </option>
+                                          <option value="<?php echo $les_projets[$i]['dossiers'][$j]['id']; ?>" ><?php echo $les_projets[$i]['dossiers'][$j]['nom_champs']; ?></option>
                                           <?php  } ?>
                                           <?php } else {  ?>
-                                          <option value="<?php echo $les_projets[$i]['dossiers'][$j]['id']; ?>" ><?php echo $les_projets[$i]['dossiers'][$j]['nom_champs'].'<-'.$les_projets[$i]['dossiers'][$j]['nom_entite']; ?> </option>
+                                          <option value="<?php echo $les_projets[$i]['dossiers'][$j]['id']; ?>" ><?php echo $les_projets[$i]['dossiers'][$j]['nom_champs']; ?></option>
                                        <?php  } ?>
                                     <?php } ?>
                                  <?php } ?>
                               </select>
                            </div>
                            <input type="text" value="<?php echo $les_projets[$i]['id']; ?>" name="organigramme_id_edit[]" hidden>
-                         
-                           
+                           <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Les Dossiers a Modifier dans <strong> <?php echo $les_projet_modifier[$i]['nom_organigrammes']; ?> </strong>  </label>
+                           <div class="col-md-6">
+                              <select id="select_tree_modifier<?php echo $les_projet_modifier[$i]['id']; ?>" multiple="multiple" name="dossiers_edit<?php echo $les_projet_modifier[$i]['id']; ?>[]" class=" form-control ">
+                                 <?php for($j=0;$j<count($les_projet_modifier[$i]['dossiers']);$j++){ ?>
+                                    <?php if ($les_projet_modifier[$i]['dossiers'][$j]['parent_id'] == 0){  ?>
+                                       <?php if (is_array_empty($les_projet_modifier[$i]['dossiers_select'])){  ?>
+                                          <?php if (in_array($les_projet_modifier[$i]['dossiers'][$j]['id'], $les_projet_modifier[$i]['dossiers_select'])) {  ?>
+                                          <option value="<?php echo $les_projet_modifier[$i]['dossiers'][$j]['id']; ?>" selected><?php echo $les_projet_modifier[$i]['dossiers'][$j]['nom_champs']; ?></option>
+                                          <?php  } else { ?>
+                                          <option value="<?php echo $les_projet_modifier[$i]['dossiers'][$j]['id']; ?>" ><?php echo $les_projet_modifier[$i]['dossiers'][$j]['nom_champs']; ?></option>
+                                          <?php  } ?>
+                                          <?php } else {  ?>
+                                          <option value="<?php echo $les_projet_modifier[$i]['dossiers'][$j]['id']; ?>" ><?php echo $les_projet_modifier[$i]['dossiers'][$j]['nom_champs']; ?></option>
+                                       <?php  } ?>
+                                    <?php } ?>
+                                 <?php } ?>
+                              </select>
+                           </div>
 
                            <script>
                                var id_select = {!! json_encode($les_projets[$i]['id']) !!}
                               $('#select_tree'+id_select).select2({});
-                          
+                              var id_select_modifier = {!! json_encode($les_projet_modifier[$i]['id']) !!}
+                              $('#select_tree_modifier'+id_select_modifier).select2({});
                            </script>
                         </div>
                         <?php  } ?>

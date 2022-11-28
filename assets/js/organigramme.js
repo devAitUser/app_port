@@ -116,6 +116,94 @@ var check_parent = 'false';
 
 
 
+function add_dossier_fill_treeview(id_organigramme,entite,pos_item) {
+
+
+  if(pos_item != 0){
+
+  }
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+
+  $.ajax({
+      url: APP_URL+"/add_dosier_array_organigramme",
+      method:"POST",
+      data:{
+   
+        organigramme_id : id_organigramme,
+        entite : entite,
+      },
+      dataType: "json",
+      success: function(data) {
+        console.log(data)
+
+        var num = 0;
+
+
+ 
+    if(pos_item == 0){
+
+   
+  
+          num = data.id_entite
+         
+          var label_entite = '<nav aria-label="breadcrumb"> <ol class="breadcrumb"> <li class="breadcrumb-item active" aria-current="page">'+data.name_entite+'</li> </ol> </nav>';
+          $('.tree').append("<li id='row_"+num+"'  > "+label_entite+" <div id='treeview_"+num+"'> </div> </li> ");
+              $("#treeview_"+num).treeview({
+              data: data.dossiers,
+            });
+
+    } else {
+ 
+     
+    
+        num = data.id_entite
+        var label_entite = '<nav aria-label="breadcrumb"> <ol class="breadcrumb"> <li class="breadcrumb-item active" aria-current="page">'+data.name_entite+'</li> </ol> </nav>';
+        $('#row_'+pos_item).html("<li id='row_"+num+"'  > "+label_entite+" <div id='treeview_"+num+"'> </div> </li> ");
+            $("#treeview_"+num).treeview({
+            data: data.dossiers,
+          });
+
+
+    }
+     
+
+       
+        
+
+
+         
+
+
+      
+      }
+  })
+
+  $.ajax({
+      url: APP_URL+"/array_organigramme_simple",
+      dataType: "json",
+      data:{
+        organigramme_id : id_organigramme
+      },
+      success: function(data) {
+        all_dossiers =data
+      }
+  })
+
+
+
+
+
+}
+
+
+
+
 
 function edit_name_dossier(e,row) {
 
@@ -141,8 +229,6 @@ function edit_name_dossier(e,row) {
 
       $("#id_modif_nom_dossier").val(data.id);
       $("#modif_nom_dossier").val(data.nom_champs);
-      $("#id_organigramme_up").val(data.organigramme_id);
-      $("#id_entite").val(data.entite_id);
 
      
 
@@ -269,87 +355,6 @@ function unset_table() {
 
 
 
-function add_dossier_fill_treeview(id_organigramme,entite,pos_item) {
-
-
-    check_have_parent();
-  
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-      }
-    });
-  
-  
-    $.ajax({
-        url: APP_URL+"/add_dosier_array_organigramme",
-        method:"POST",
-        data:{
-     
-          organigramme_id : id_organigramme,
-          entite : entite,
-        },
-        dataType: "json",
-        success: function(data) {
-          console.log(data)
-  
-          var num = 0;
-  
-  
-   
-      if(pos_item == 0){
-
-     
-    
-            num = data[0].id_entite
-            var label_entite = '<nav aria-label="breadcrumb"> <ol class="breadcrumb"> <li class="breadcrumb-item active" aria-current="page">'+data[0].name_entite+'</li> </ol> </nav>';
-            $('.tree').append("<li id='row_"+num+"'  > "+label_entite+" <div id='treeview_"+num+"'> </div> </li> ");
-                $("#treeview_"+num).treeview({
-                data: data[0].dossiers,
-              });
-
-      } else {
-          $('#row_'+data[0].id_entite).remove();
-      
-          num = data[0].id_entite
-          var label_entite = '<nav aria-label="breadcrumb"> <ol class="breadcrumb"> <li class="breadcrumb-item active" aria-current="page">'+data[0].name_entite+'</li> </ol> </nav>';
-          $('#'+pos_item).after("<li id='row_"+num+"'  > "+label_entite+" <div id='treeview_"+num+"'> </div> </li> ");
-              $("#treeview_"+num).treeview({
-              data: data[0].dossiers,
-            });
-
-
-      }
-       
-
-         
-          
-  
-  
-           
-  
-  
-        
-        }
-    })
-  
-    $.ajax({
-        url: APP_URL+"/array_organigramme_simple",
-        dataType: "json",
-        data:{
-          organigramme_id : id_organigramme
-        },
-        success: function(data) {
-          all_dossiers =data
-        }
-    })
-  
-  
-  
-  
-  
-  }
-
 
  function fill_treeview() {
 
@@ -404,13 +409,13 @@ function add_dossier_fill_treeview(id_organigramme,entite,pos_item) {
 
         for (let i = 0; i < data.length; i++) {
 
-          num = data[i].id_entite
+          num = data[i].id_entite;
 
 
           var label_entite = '<nav aria-label="breadcrumb"> <ol class="breadcrumb"> <li class="breadcrumb-item active" aria-current="page">'+data[i].name_entite+'</li> </ol> </nav>';
 
 
-          $(".tree").append("<li id='row_"+num+"' > "+label_entite+" <div id='treeview_"+num+"'> </div> </li> ");
+          $(".tree").append("<li id='row_"+num+"'  > "+label_entite+" <div id='treeview_"+num+"'> </div> </li> ");
           
         
 
@@ -599,7 +604,7 @@ $(document).ready(function() {
 
 
            $("#select_entite").change(function(){
-               fill_treeview()
+               //fill_treeview()
           });
   
       
@@ -688,8 +693,6 @@ $(document).ready(function() {
 
         var id_dossier =  $('#id_modif_nom_dossier').val();
         var nom_dossier =  $('#modif_nom_dossier').val();
-        var id_organigramme =  $('#id_organigramme_up').val();
-        var id_entite =  $('#id_entite').val();
 
         $.ajax({
           url:APP_URL+"/modif_nom_dossier",
@@ -709,9 +712,7 @@ $(document).ready(function() {
 
               $('#panel_name_dossier .btn_fermer_attributs').click();
 
-              var x =  $("#row_"+id_entite).prev().attr('id');
-                          
-              add_dossier_fill_treeview(id_organigramme,id_entite,x);
+              fill_treeview();
 
             }
     
@@ -739,7 +740,6 @@ $(document).ready(function() {
 
 
               $('#select_entite').find('option:selected').remove();
-              $('#row_'+id_entite).remove();
 
 
                 alert('supprimer avec Succès')
@@ -861,7 +861,7 @@ $(document).ready(function() {
        });
 
 
-     
+
 
       
 
@@ -888,7 +888,7 @@ $(document).ready(function() {
 
                         if(data.etat){
                         
-                          
+                    
                       
                           $('#treeview_form')[0].reset();
                           alert('ajouter aves succes');
@@ -900,13 +900,16 @@ $(document).ready(function() {
                           }, 2000);
       
                           unset_table()
-                            var x = 0
-                            if($("#row_"+data.id_entite).length == 0) {
-                               x = 0
-                            }else{
-                               x =  $("#row_"+data.id_entite).prev().attr('id');
-                            }
-                            add_dossier_fill_treeview(data.id_organigramme,data.id_entite,x);
+                          var x = 0
+                          console.log($("#row_"+data.id_entite).length)
+                          if($("#row_"+data.id_entite).length == 0) {
+                             x = 0
+                          }else{
+                             x =  $("#row_"+data.id_entite).prev().attr('id');
+                         
+                          }
+                        
+                          add_dossier_fill_treeview(data.id_organigramme,data.id_entite,x);
                         }
 
                         }
@@ -973,23 +976,16 @@ $(document).ready(function() {
 
 
 
-
 function removeRow(e,row,entite,organigramme_id) {
 
 
-  e.preventDefault();
+             e.preventDefault();
 
   
-  array_id =[];
+              array_id =[];
 
 
-
-
-
-
-
-                        const
-              getChildren = id => (relations[id] || []).flatMap(o => [o, ...getChildren(o.id)]),
+              const getChildren = id => (relations[id] || []).flatMap(o => [o, ...getChildren(o.id)]),
             
               relations = all_dossiers.reduce((r, o) => {
                   (r[o.parent_id] ??= []).push(o);
@@ -1004,7 +1000,7 @@ function removeRow(e,row,entite,organigramme_id) {
                 array_id.push(row)
              
 
-
+                
 
                 $.ajax({
                   url: APP_URL+"/delete_dossier",
@@ -1014,18 +1010,18 @@ function removeRow(e,row,entite,organigramme_id) {
                   },
                   success:function(data){
 
-                    if(data.etat){
-                      
-                         var x =  $("#row_"+entite).prev().attr('id');
-                          
-                         add_dossier_fill_treeview(organigramme_id,entite,x);
-                        alert('supprimer avec succes');
+                    
 
-                     }
+                
                 
             
                   }
                  })
+                 
+                 var x =  $("#row_"+entite).prev().attr('id');
+                    add_dossier_fill_treeview(organigramme_id,entite,x);
+                    alert('supprimer avec succes');
+                  
 
 
 

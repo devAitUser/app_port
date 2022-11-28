@@ -88,7 +88,7 @@
    <div class="table_p">
       <form method="post" id="treeview_form">
       <div class="row">
-       
+         
          <div class="col-md-6 panel_add">
             <h3 align="center">Ajouter un Nouveau Dossier</h3>
             <br />
@@ -358,8 +358,6 @@
                      <div class="form-group">
                      <label for="nom_organigramme">Nom du dossier</label>
                      <input type="text" id="id_modif_nom_dossier" hidden>
-                     <input type="text" id="id_entite" hidden>
-                     <input type="text" id="id_organigramme_up" hidden>
                      <input type="text" class="form-control" name="modif_nom_dossier" id="modif_nom_dossier" placeholder="Nom du L'entité " required="">
                      </div>
             </div>

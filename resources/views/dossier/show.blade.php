@@ -230,10 +230,7 @@
       
                               <button class="btn btn-primary delete_user mr-3" href="" id="">Modifier</button>
 
-                              
-                              @if($check_demande_supperssion)
-                              <a class="btn btn-danger delete_user" href="#" data-bs-toggle="modal" data-bs-target="#demande_suppression">Supprimer</a>
-                              @endif()
+                              <a class="btn btn-danger delete_user" href="{{ route('delete_dossier',$id) }}" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
       
       
                         </div>
@@ -301,7 +298,7 @@
                                             
       
                                              <div class="col-xsm mr-2">
-                                                <a href="{{ asset('public/uploads/'.$attributs[$i]->valeur ) }} " target="_blank">
+                                                <a href="{{ asset('public/storage/'.$attributs[$i]->valeur ) }} " target="_blank">
                                                    <span class="btn btn-warning btn_show_pdf" href="">
                                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                                          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>

@@ -87,23 +87,17 @@
             <div class="sub_archive_block">
                <h4 class="titre_block_archive">
                   <img src="{{ asset('img_app/Box-icon.png') }}" style="vertical-align: bottom;position: relative;top: 1px;right: 3px;" alt="">
-                  Les Chiffres de l'archivage   @if ($ckeck_select) du Projet {{$nom_projet}}   @endif
+                  MES DOSSIERS  
                </h4>
                 @if ($ckeck_select)
 
                   <li class="li_block_archive">
                      <a href="{{route('all_dossier')}}">
                      <img src="{{ asset('img_app/62917-open-file-folder-icon.png') }}" style="width: 22px;vertical-align: sub;" alt="">
-                     Total des Dossiers indexé  <b><span ><b> ({{$Count}})  </b>
+                     Total des Dossiers   <b><span ><b> ({{$Count}})  </b>
                      </span></b></a>
                   </li>
-                  @if (Auth::user()->hasPermissionTo('Créer les dossiers'))
-                  <li class="li_block_archive last_item_bskli">
-                     <a href="#">
-                     <img src="{{ asset('img_app/62917-open-file-folder-icon.png') }}" style="width: 22px;vertical-align: sub;" alt="">
-                     Total des Dossiers indexé aujourd'hui  <b><span ><b>({{$dossier_indexe}})</b></span></b></a>
-                  </li>
-                  @endif
+               
                     
                 @else
 

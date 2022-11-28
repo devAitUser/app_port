@@ -21,8 +21,6 @@ use App\Models\Entite;
 
 use App\Models\Indexe;
 use Session;
-use File;
-
 
 use Illuminate\Http\Request;
 
@@ -257,20 +255,10 @@ class DossierController extends Controller
                 if ($request->file[$i] != null) {
                     $attributs_dossier1 = new Attributs_dossier();
                     $attributs_dossier1->nom_champs =
-                    $request->nom_champ_file[$i] ; 
-
-                    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-                    $result = '';
-                    for ($e = 0; $e < 5; $e++){
-                         $result .= $characters[mt_rand(0, 61)];
-                    }
-                        
-                 
-                                     
-                    $destinationPath = 'public/uploads';
-                    $file_this = $request->file("file")[$i]->move($destinationPath,$result."_".$request->file("file")[$i]->getClientOriginalName());
-                    $sub= substr($file_this,15);
-                    $attributs_dossier1->valeur = $sub;
+                        $request->nom_champ_file[$i];
+                    $attributs_dossier1->valeur = $request
+                        ->file("file")
+                        [$i]->store("files");
                     $attributs_dossier1->type_champs = "Fichier";
                     $attributs_dossier1->dossier_id = $dossier->id;
                     $attributs_dossier1->save();
@@ -287,7 +275,7 @@ class DossierController extends Controller
                 }
             }
         }
-        Session::flash('show_dossier','content');
+
         return redirect("/show_dossier/" . $dossier->id);
     }
 
@@ -618,16 +606,6 @@ class DossierController extends Controller
     public function delete_dossier($id)
     {
         $this->authorize("permission_Modifier_dossiers");
-
-        $dossiers = Attributs_dossier::where("dossier_id", $id)->get();
-
-        for ($i=0; $i < count($dossiers) ; $i++) { 
-            if($dossiers[$i]->type_champs == 'Fichier'){
-                if (File::exists(public_path('uploads/'.$dossiers[$i]->valeur))) {
-                    File::delete(public_path('uploads/'.$dossiers[$i]->valeur));
-                }
-            }
-        }
 
         $delete = Dossier::find($id);
         $delete->delete();
@@ -1108,11 +1086,5 @@ class DossierController extends Controller
         $attributs_dossier1->save();
 
         return redirect("/show_dossier/" . $request->id_dossier);
-    }
-
-    public function test()
-    {
-  
-        File::delete(public_path('uploads/oUDUafged.sql'));
     }
 }
