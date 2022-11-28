@@ -157,15 +157,7 @@ class UserController extends Controller
 
 
           
-        for($i=0;$i<count($projet_modifier);$i++){
-            $organigramme=Organigramme::find($projet_modifier[$i]->organigrammes_id );
-            $id_organigramme = $projet_modifier[$i]->organigrammes_id;
-            $nom_organigrammes = $organigramme->nom;
-            $dossiers = json_decode($projet_modifier[$i]->dossiers, true);
-        
-            $les_projet_modifier[] = array('id' => $id_organigramme ,'nom_organigrammes' => $nom_organigrammes,'dossiers_select' => $dossiers , 'dossiers' => $organigramme->dossier_champ );
-            
-          }
+    
 
 
 
@@ -176,7 +168,7 @@ class UserController extends Controller
 
           
 
-       return view('user.showuser',compact('user','roles','permissions','organigrammes','les_projets' ,'count_projet','les_projet_modifier' ));
+       return view('user.showuser',compact('user','roles','permissions','organigrammes','les_projets' ,'count_projet' ));
 
 
     }

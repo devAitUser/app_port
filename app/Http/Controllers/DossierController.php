@@ -36,21 +36,75 @@ class DossierController extends Controller
         $this->url = $url;
     }
 
+
+    public function choose_project(Request $request)
+    {
+        $user_current = Auth::user();
+        $user = User::find($user_current->id);
+        $user->projet_select_id = $request->projet_user;
+         $user->save();
+
+         switch ($request->id_view) {
+            case 1:
+                return redirect()->route('create_dossier');
+            break;
+            case 2:
+                return redirect()->route('recherche_dossier');
+            break;
+            default:
+            return redirect()->route('home');
+            break;
+            
+            
+         }
+
+         
+
+        
+    }
+
+    public function select_project($id)
+    {
+        $user = Auth::user();
+
+        $organigramme =array();
+
+        for($i=0;$i<count($user->projet);$i++){
+
+            $organigramme[]=Organigramme::find($user->projet[$i]['organigrammes_id']);
+
+           
+          }
+
+        $data = array(
+            'user' => $user,
+            'projets' => $organigramme,
+            'id_view' => $id
+        );
+
+    
+
+        return view("select_project", $data);
+    }
+
     public function create_dossier()
     {
         $this->authorize("permission_creer_dossier");
 
         $user = Auth::user();
+        $nom_projet='';
         $id = "";
 
         if ($user->projet_select_id != null) {
             $projet_select_id = $user->projet_select_id;
 
             $organigramme = Organigramme::find($projet_select_id);
+            $dossiers = $organigramme->dossiers;
+            $nom_projet = $organigramme->nom;
             $id = $organigramme->id;
         }
 
-        $data = ["id_organigramme" => $id];
+        $data = ["id_organigramme" => $id , "nom_projet" => $nom_projet  ];
 
         return view("dossier.create", $data);
     }
@@ -397,45 +451,17 @@ class DossierController extends Controller
 
         $organigramme = Organigramme::find($projet_select_id);
 
+        $name_project = $organigramme->nom;
+
         $dossiers = $organigramme->dossiers;
 
         $titre = "";
 
         $all_dossier = [];
 
-        // for ($i = 0; $i < count($dossiers); $i++) {
-        //     $count_check_item_next = 0;
-        //     $check = 1;
-        //     $all_dossier = Attributs_dossier::where([
-        //         "dossier_id" => $dossiers[$i]->id,
-        //     ])->get();
+   
 
-        //     $createdAt = Carbon::parse($dossiers[$i]->created_at);
-
-        //     $date = $createdAt->format("d/m/Y H:i:s");
-
-        //     $user = User::find($dossiers[$i]->user_id);
-        //     for ($j = 0; $j < count($all_dossier); $j++) {
-        //         if ($all_dossier[$j]->type_champs == "text") {
-        //             if ($check == $count_check_item_next) {
-        //                 $titre .= " / ";
-        //                 $check++;
-        //             }
-        //             $titre .= $all_dossier[$j]->valeur;
-        //             $count_check_item_next++;
-        //         }
-        //     }
-
-        //     $all_dossiers[] = [
-        //         "id" => $dossiers[$i]->id,
-        //         "date" => $date,
-        //         "titre" => $titre,
-        //         "user" => $user->identifiant,
-        //     ];
-        //     $titre = "";
-        // }
-
-        $data = ["id_organigramme" => $id, "all_dossiers" => $all_dossiers];
+        $data = ["id_organigramme" => $id, "all_dossiers" => $all_dossiers, "name_project" => $name_project];
 
         Session::flash('session_dossier','acceder aux dossiers');
 

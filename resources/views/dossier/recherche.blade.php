@@ -161,9 +161,8 @@
 </style>
 <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script> 
 <script src="{{ asset('assets/js/recherche.js') }}"></script>
-<div class="header_view">
-   <div class="sub_view"> <span class="title_profil"> Recherche</span> </div>
-</div>
+
+<div class="panel-heading">   Recherche Dans la Division :{{$name_project}} : </div>
 <div class="panel_view_details">
    <div class="table_p">
   
@@ -179,7 +178,7 @@
 
                     <div class="col-md-12 pb-4 pt-3">
 
-                         <div class="td_1"><span class="label_search">Rechercher par Champs :</span>  </div>
+                         <div class="td_1"><span class="label_search">Rechercher par Champs : </span>  </div>
 
                      </div>
       

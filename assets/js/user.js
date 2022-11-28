@@ -66,10 +66,8 @@ $(document).ready(function() {
            row += '<div class="col-md-6">'
            row += '<select id="select_tree'+id_select+'"  multiple="multiple" class="form-control"  name="dossiers'+id_select+'[]">'
            row += '</select> </div>'
-           row += '<input type="text" value="'+id_select+'" name="organigramme_id_edit[]" hidden><label for="select_tree_up_'+id_select+'" class="col-md-4 col-form-label text-md-end">Les Dossiers a Modifier dans  <strong> '+text_select+' </strong>  </label>'
-           row += '<div class="col-md-6">'
-           row += '<select id="select_tree_up_'+id_select+'"  multiple="multiple" class="form-control"  name="dossiers_edit'+id_select+'[]">'
-           row += '</select> </div>'
+          
+         
 
 
            row += ' </div>'

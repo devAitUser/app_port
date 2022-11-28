@@ -334,7 +334,7 @@ function fill_parent_dossier() {
         }
     });
     $.ajax({ 
-        url: APP_URL + "/fill_parent_dossier_consulter",
+        url: APP_URL + "/fill_parent_dossier",
         method: "get",
         dataType: "json",
         success: function(data) {

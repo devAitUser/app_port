@@ -107,14 +107,14 @@ label:last-child input[type=radio] {
 </style>
 
 
-<div class="panel-heading">   Créer un nouveau dossier dans la Division  <strong>{{ $nom_projet }}</strong> </div>
+<div class="panel-heading"> <strong>  Selectionner la Division </strong> </div>
 
 <div class="panel_view_details">
    
 
  
    <div class="table_p">
-   <form  method="post" action="{{url('store_dossier_create')}}" enctype="multipart/form-data" >
+   <form  method="post" action="{{url('choose_project')}}"  >
             @csrf
       <div class="row">
          
@@ -123,29 +123,30 @@ label:last-child input[type=radio] {
 
               <div class="col-md-12">
              
-              <input type="text" name="id_organigramme" value="{{$id_organigramme}}" hidden>
+            
 
-                     <div class="form-group row">
-                           <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm">Entité :</label>
-                           <input  type="text" name="nom_champs_select[]" value="Entite" hidden="">
-                           <div class="col-sm-6">
-                           <select class="form-select" id="entite_select" name="">
-                              <option value="">Sélectionner l'entité  </option>
-                     
-                              </select>
 
-                              
-                           </div>
-                        </div>
-
-              
                         <div class="form-group row">
-                           <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm">FOND :</label>
+                           <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm">les Divisions :</label>
+                           <input type="text" name="id_view" value="{{$id_view}}" hidden>
                            <input  type="text" name="nom_champs_select[]" value="FOND" hidden="">
                            <div class="col-sm-6">
-                           <select class="form-select" id="parent_select" name="value_select[]">
-                              <option value="">Selectionne le dossier</option>
-                     
+                         
+                              <select class="profil_entite" name="projet_user" value="{{ $user['entite'] }}" id="" size="5">
+                  
+
+                                 <?php for($i=0;$i<count($projets);$i++){ ?>
+                                           
+                                                      
+                                    <?php if($projets[$i]['id'] == $user['projet_select_id'] ) {  ?>
+                                          <option value="<?php echo $projets[$i]['id']; ?>" selected><?php echo $projets[$i]['nom']; ?></option>
+                                          <?php  } else {  ?>
+                                          <option value="<?php echo $projets[$i]['id']; ?>" ><?php echo $projets[$i]['nom']; ?></option>
+                                          <?php  } ?>
+                           
+                   
+                                     <?php  } ?>
+                                
                               </select>
 
                               
@@ -157,35 +158,9 @@ label:last-child input[type=radio] {
               </div>
 
               
-              <div id="row_1" class="col-md-12 ">
-
-     
-                        <div class="form-group row">
-                           <label for="colFormLabelSm"  class="col-sm-6 col-form-label col-form-label-sm sous_label_1 text-uppercase">________ :</label>
-                           <input class="nom_champs_select_1" type="text" name="nom_champs_select[]" value="text" hidden="">
-                           <div class="col-sm-6">
-                              <select class="form-select" id="sous_select_1" name="value_select[]" onchange="add_row_select(1)">
-                                 <option value="">Selectionne le dossier</option>
-                        
-                                 </select>
-
-                              
-                           </div>
-                        </div>
-                        
-       
-                   
-
-              </div>
-
-              <div id='attribut_champ'>
-              </div>
-
              
-              <div class="" id='attribut_file'>
-       
 
-              </div> 
+      
               
    
              
@@ -212,7 +187,7 @@ label:last-child input[type=radio] {
                
                   <button type="submit" class="btn btn-primary  mr-3 " >Valider</button>
                 
-                  <button type="button" class="btn btn-danger" >Supprimer</button>
+                  <button type="button" class="btn btn-danger" >Accueil</button>
            </div>
         
          </div>
