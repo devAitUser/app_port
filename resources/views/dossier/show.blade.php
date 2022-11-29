@@ -60,7 +60,6 @@
       }
 
       table.table.table-sm {
-         /* border: 1px solid; */
          border: 1px solid #dee2e6;
          border-collapse: collapse;
       }
@@ -230,8 +229,7 @@
       
                               <button class="btn btn-primary delete_user mr-3" href="" id="">Modifier</button>
 
-                              <a class="btn btn-danger delete_user" href="{{ route('delete_dossier',$id) }}" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
-      
+                              <a class="btn btn-danger delete_user" href="#" data-bs-toggle="modal" data-bs-target="#demande_suppression">Supprimer</a>
       
                         </div>
       

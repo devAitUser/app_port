@@ -74,6 +74,10 @@
            justify-content: space-between;
          }
 
+
+         select#select_entite {
+            width: 70%;
+            }
 </style>
 
 <div class="panel-heading">   

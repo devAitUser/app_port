@@ -909,7 +909,8 @@ $(document).ready(function() {
                          
                           }
                         
-                          add_dossier_fill_treeview(data.id_organigramme,data.id_entite,x);
+                          //add_dossier_fill_treeview(data.id_organigramme,data.id_entite,x);
+                          fill_treeview()
                         }
 
                         }

@@ -214,3 +214,6 @@ Route::get('/pdf/{pdf}', [App\Http\Controllers\OrganigrammeController::class, 'p
 
 Route::get('/table_organigramme_view', [App\Http\Controllers\OrganigrammeController::class, 'table_organigramme_view'])->name('table_organigramme_view');
 
+
+/*****    préts   ****/
+

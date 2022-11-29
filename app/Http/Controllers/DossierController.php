@@ -292,9 +292,7 @@ class DossierController extends Controller
             for ($i = 0; $i < count($request->input("nom_champ")); $i++) {
                 if ($request->valeur[$i] != null) {
                     $attributs_dossier = new Attributs_dossier();
-                    $attributs_dossier->nom_champs = $request->input(
-                        "nom_champ"
-                    )[$i];
+                    $attributs_dossier->nom_champs = $request->input("nom_champ")[$i];
                     $attributs_dossier->valeur = $request->valeur[$i];
                     $attributs_dossier->type_champs = $request->type_champ[$i];
                     $attributs_dossier->dossier_id = $dossier->id;
@@ -329,6 +327,7 @@ class DossierController extends Controller
                 }
             }
         }
+        Session::flash('show_dossier','content');
 
         return redirect("/show_dossier/" . $dossier->id);
     }
