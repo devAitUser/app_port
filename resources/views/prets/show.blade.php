@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Devis </title>
+<title>Bordereau de consultation interne </title>
 
 <style type="text/css">
    
@@ -38,33 +38,36 @@
       </tr>
 
       <tr>
-         <td>  <div class="block_table"> Date de versement :  </div>  
+         <td colspan="2">  <div class="block_table"> Date de versement : {{$date}}   </div>  
     
           </td>
       </tr>
       <tr>
-         <td>  <div class="block_table"> Numéro de bordereau :  </div>  
+         <td colspan="2">  <div class="block_table"> Numéro de bordereau :  {{$prets['id']}}  </div>  
     
           </td>
       </tr>
       <tr>
-         <td>  <div class="block_table"> Division versante :  </div>  
+         <td colspan="2">  <div class="block_table"> Division versante : {{$prets['division']}}  </div>  
     
           </td>
       </tr>
       <tr>
-         <td>  <div class="block_table"> Nom du responsable du versement :  </div>  
+         <td colspan="2">  <div class="block_table"> Nom du responsable du versement : {{$prets['user']}} </div>  
     
           </td>
       </tr>
       <tr>
-         <td>  <div class="block_table" style="width: 50%;"> Poste téléphonique :  </div>  
-    
-          </td>
-          <td>  <div class="block_table" style="width: 50%;">  Email :  </div>  
+         <td colspan="2">  <div class="block_table" style="width: 50%;"> Poste téléphonique : {{$prets['telephone']}} </div>  
     
           </td>
       </tr>
+      <tr>
+       
+         <td colspan="2">  <div class="block_table" style="width: 50%;">  Email : {{$prets['email']}} </div>  
+   
+         </td>
+     </tr>
       <tr>
          <td colspan="2">   <div class="block_table"> Nombre de boîtes (si autre conditionnement, précisé) :  </div>  
     

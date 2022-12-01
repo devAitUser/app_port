@@ -217,3 +217,14 @@ Route::get('/table_organigramme_view', [App\Http\Controllers\OrganigrammeControl
 
 /*****    préts   ****/
 
+Route::get('/prets', [App\Http\Controllers\PretsController::class, 'index'])->name('prets');
+
+Route::get('/prets_show/{id}', [App\Http\Controllers\PretsController::class, 'show'])->name('show');
+
+Route::get('/prets_create', [App\Http\Controllers\PretsController::class, 'create'])->name('prets_create');
+
+Route::post('/prets_store', [App\Http\Controllers\PretsController::class, 'store']);
+
+Route::get('/api_prets', [App\Http\Controllers\PretsController::class, 'api_pret']);
+
+Route::post('/prets_delete/{id}', [App\Http\Controllers\PretsController::class, 'delete']);

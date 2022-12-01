@@ -926,7 +926,8 @@ class OrganigrammeController extends Controller
         );
 
         $pdf = PDF::loadView('organigramme_view.pdf', $data);
-        return $pdf->stream();
+        //return $pdf->stream();
+        //return view('organigramme_view.pdf',$data); 
 
     }
 

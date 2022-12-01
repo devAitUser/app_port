@@ -561,6 +561,30 @@ $(document).ready(function() {
     });
 
 
+    $('.printclass1').click(function(e) {
+
+        e.preventDefault();
+ 
+
+
+        var restorepage = $('body').html();
+        var printcontent = $('.table_p').clone();
+        $('body').empty().html(printcontent);
+        window.print();
+        $('body').html(restorepage);
+
+        var text = 'Impression du Dossier'
+        var id_dossier = $('#id_dossier').val();
+
+     
+
+
+
+
+    });
+
+
+
     $('.printclass').click(function(e) {
 
         e.preventDefault();

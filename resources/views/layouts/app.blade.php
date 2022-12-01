@@ -61,6 +61,15 @@
                      </li>
 
 
+                   
+
+                        <li class="Mnuli lish  {{ request()->is('prets')  ? 'active' : '' }} ">
+                           <a href="{{route('prets')}}">
+                           <span class="material-icons">file_open</span>
+                           </a>
+                        </li>
+
+
                   
            
                      <li class="Mnuli lish  {{ request()->is('user_profile')  ? 'active' : '' }} ">
