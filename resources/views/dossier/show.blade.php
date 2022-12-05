@@ -258,7 +258,9 @@
       
                               <button class="btn btn-primary delete_user mr-3" href="" id="">Modifier</button>
 
+                              @if($check_demande_supperssion)
                               <a class="btn btn-danger delete_user" href="#" data-bs-toggle="modal" data-bs-target="#demande_suppression">Supprimer</a>
+                              @endif()
       
                         </div>
       

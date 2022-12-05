@@ -127,9 +127,9 @@ label:last-child input[type=radio] {
 
                      <div class="form-group row">
                            <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm">Entité :</label>
-                           <input  type="text" name="nom_champs_select[]" value="Entite" hidden="">
+                           <input  type="text" name="nom_entite" value="Entité " hidden="">
                            <div class="col-sm-6">
-                           <select class="form-select" id="entite_select" name="">
+                           <select class="form-select" id="entite_select" name="entite"  >
                               <option value="">Sélectionner l'entité  </option>
                      
                               </select>
@@ -178,14 +178,16 @@ label:last-child input[type=radio] {
 
               </div>
 
+              <div class="" id='attribut_file'>
+       
+
+               </div>
+
               <div id='attribut_champ'>
               </div>
 
              
-              <div class="" id='attribut_file'>
-       
-
-              </div> 
+               
               
    
              

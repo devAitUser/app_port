@@ -23,12 +23,7 @@
       
    </tr>
 
-   <tr>
-      <th colspan="2">  <div class="title_table_h">Etablir en 2 exemplaires, chaque service doit conserver un exemplaire à soumettre à
-       l’approbation du responsable des archives avant transfert du fonds</div>  
- 
-       </th>
-    </tr>
+  
 
 
     <tr>
@@ -79,20 +74,7 @@
     
           </td>
       </tr>
-      <tr>
-         <th colspan="2">  <div style="padding-top: 35px;" class="SUB_table"> <strong>Partie à remplir par l’entité versante</strong>  </div>  
     
-          </th>
-         </tr>
-
-         <tr>
-            <td>  <div class="block_table" style="width: 50%;"> Date du versement :  </div>  
-       
-             </td>
-             <td>  <div class="block_table" style="width: 50%;">  Volumétrie (ML) :  </div>  
-       
-             </td>
-         </tr> 
          <tr>
             <td    colspan="2">  <div class="block_table" style="color: #909395;padding-bottom: 18px;"> Code du versement (Sigle de l’entité / N° séquentiel) :  </div>  
        

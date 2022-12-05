@@ -277,6 +277,18 @@ class DossierController extends Controller
         $dossier->user_id = $user->id;
         $dossier->save();
 
+
+        $attributs_dossier = new Attributs_dossier();
+        $entite = Entite::find($request->entite);
+        $attributs_dossier->nom_champs = $request->nom_entite;
+        $attributs_dossier->valeur = $entite->nom;
+        $attributs_dossier->type_champs = "select";
+        $attributs_dossier->dossier_id = $dossier->id;
+        $attributs_dossier->champs_id = $request->entite;
+        $attributs_dossier->save();
+
+
+
         for ($i = 0; $i < count($request->input("value_select")); $i++) {
             $attributs_dossier = new Attributs_dossier();
             $dossier_ = Dossier_champ::find($request->value_select[$i]);

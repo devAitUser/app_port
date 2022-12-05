@@ -36,7 +36,7 @@
    }
 
    .styled-table thead tr {
-    background-color: #343a40;
+    background-color: #0c58a4;
 
     }
     .panel-heading {
