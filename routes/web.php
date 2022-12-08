@@ -116,6 +116,8 @@ Route::get('/request_delete_dossier',[App\Http\Controllers\DossierController::cl
 
 Route::get('/api_request_delete_dossier',[App\Http\Controllers\DossierController::class, 'api_request_delete_dossier']);
 
+Route::get('/api_historique_dossier',[App\Http\Controllers\DossierController::class, 'api_historique_dossier']);
+
 Route::post('/request_decision_user',[App\Http\Controllers\DossierController::class, 'request_decision_user']);
 
 Route::post('/demande_suppression',[App\Http\Controllers\DossierController::class, 'demande_suppression']);

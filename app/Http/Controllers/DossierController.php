@@ -1071,6 +1071,31 @@ class DossierController extends Controller
         return $all;
     }
 
+
+    public function api_historique_dossier(Request $request)
+    {
+        $historique_dossier = Historique_dossier::all();
+
+        $all = [];
+
+        for ($i = 0; $i < count($historique_dossier); $i++) {
+            $createdAt = Carbon::parse($historique_dossier[$i]->created_at);
+
+            $date = $createdAt->format("d/m/Y H:i:s");
+
+            $all[] = [
+                "id" => $historique_dossier[$i]->id,
+                "user" => $historique_dossier[$i]->user,
+                "action" => $historique_dossier[$i]->action,
+                "dossier_id" => $historique_dossier[$i]->dossier_id,
+                "date" => $date ,
+             
+            ];
+        }
+
+        return $all;
+    }
+
     public function request_decision_user(Request $request)
     {
         if ($request->decision == "accepter") {

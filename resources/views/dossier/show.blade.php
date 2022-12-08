@@ -375,29 +375,21 @@
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
               
                <div class="table_info_doc">
-                  <table class="table table-sm">
+                  <table  id="organigramme_table" class=" table table-bordered text-center styled-table">
                      <thead>
                        <tr>
           
                          <th scope="col">Utilisateur</th>
                          <th scope="col">Action </th>
                          <th scope="col">Date</th>
+
+                         
                        </tr>
                      </thead>
                      <tbody>
                         
                     
-                        @foreach($all_historiques as $all_historique)
-                           <tr>
-                         
-                               <td>{{ $all_historique['user']   }}</td>
-                        
-                               <td>{{ $all_historique['action'] }}</td>
-
-                               <td>{{ $all_historique['date'] }}</td>
-                          
-                            </tr>
-                        @endforeach    
+                    
               
                      
                      
@@ -410,7 +402,8 @@
           </div>
 
           
-
+          <script src="{{asset('assets/js/datatables.min.js')}}"></script>
+           <script src="{{asset('assets/js/historique.js')}}"></script>
 
      
       </div>
