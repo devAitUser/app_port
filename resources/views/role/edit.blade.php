@@ -30,8 +30,8 @@
             <div class="card">
                 <div class="card-header">
                     
-                <a href="{{ route('roles.index') }}" > <h6>Les roles </h6> </a>  
-               \ {{ __('Modifier le role') }}
+                <a class="role_header" href="{{ route('roles.index') }}" > <h6>Les roles  </h6><span class="title_r_h">\ Modifier le role </span>    </a>  
+               
             
               </div>
 

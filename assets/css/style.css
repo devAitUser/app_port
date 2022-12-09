@@ -51,8 +51,10 @@ ul.hdMnu {
 }
 
 img.logo_css {
-  width: 250px;
+  width: 175px;
   padding-left: 35px;
+  padding-top: -12px;
+  padding-bottom: 1px;
   
 }
 
@@ -88,7 +90,7 @@ img.logo_css {
 }
 
 .Mnuli a {
-  color: #78716e !important;
+  color: #155ea4 !important;
   top: 2px;
     position: relative;
 }
@@ -105,7 +107,7 @@ img.logo_css {
 }
 
 li.Mnuli.lish.active {
-  background-color: #78716e;
+  background-color: #155ea4;
   color: #fff !important;
 }
 
@@ -168,12 +170,25 @@ body {
   position: relative;
 }
 
+ul.hdMnu {
+  display: flex;
+  align-items: center;
+}
+
 table#organigramme_table {
   border-collapse: collapse;
   border-radius: 4px;
   border-style: hidden;
   border: 1px solid #dee2e6 ;
 }
+a.role_header {
+  display: flex;
+}
+
+span.title_r_h {
+  font-size: 14px;
+}
+  
 
 .card-header {
 
@@ -269,7 +284,7 @@ span.label_menu_right {
 }
 
 li.link_menu__left:hover {
-  background-color: #838587;
+  background-color: #155ea4;
   color: #fff;
 }
 
@@ -330,7 +345,7 @@ input.input-field_pass {
 }
 
 img.logo_login {
-  width: 36%;
+  width: 15%;
   display: block;
   margin: 0 auto;
   margin-bottom: 33px;
@@ -392,7 +407,7 @@ input#remember {
 
 
 .panel_view_details {
-  border: 1px solid #d3e0e9;
+  border: 1px solid #3d7bb6a6;
   width: 80%;
   border-radius: 0px 0px 4px 4px;
   margin: 0 auto;
@@ -740,18 +755,18 @@ a.link_organigramme span {
 
 .panel-heading {
   padding: 10px 15px;
-  border-bottom: 1px solid transparent;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
-  color: #333;
-  background-color: #ededed;
-  border-color: #ddd;
-  WIDTH: 84% !important;
-  MARGIN: auto;
-  border-left: 1px solid #d3e0e9;
-  border-right: 1px solid #d3e0e9;
-  border-top: 1px solid #d3e0e9;
-  box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #fff;
+    background-color: #155ea4;
+    border-color: #ddd;
+    WIDTH: 84% !important;
+    MARGIN: auto;
+    border-left: 1px solid #d3e0e9;
+    border-right: 1px solid #d3e0e9;
+    border-top: 1px solid #d3e0e9;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
   
 }
 

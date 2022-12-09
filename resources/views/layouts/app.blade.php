@@ -48,7 +48,7 @@
             <div class="panel_view_header">
                <div class="header_panel_view">
                   <div class="card-header">
-                     <img src="{{ asset('img_app/logo_m.png') }}" class="logo_css">
+                     <img src="{{ asset('assets/img/anp.png') }}" class="logo_css">
                   </div>
                   <ul class="hdMnu">
                      <li class="Mnuli lish  {{ request()->is('home')  ? 'active' : '' }} ">
@@ -62,12 +62,13 @@
 
 
                    
-
+                     @if (Auth::user()->hasPermissionTo('gestion des prets')) 
                         <li class="Mnuli lish  {{ request()->is('prets')  ? 'active' : '' }} ">
                            <a href="{{route('prets')}}">
                            <span class="material-icons">file_open</span>
                            </a>
                         </li>
+                     @endif
 
 
                   

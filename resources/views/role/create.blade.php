@@ -73,31 +73,13 @@
 
                                     
 
-                                    <input type="checkbox" name="permission[]" value="1">gestion des boites
-                                    <br>
+                                    @foreach($permissions as $permission)
                                     
-
-                                    <input type="checkbox" name="permission[]" value="2">Créer les dossiers
+                                    <input type="checkbox" name="permission[]" value="{{ $permission->id }}">{{ $permission->name }}
                                     <br>
-                                    
+                                    @endforeach 
 
-                                    <input type="checkbox" name="permission[]" value="3">Modifier le plan de classement
-                                    <br>
-                                    
-
-                                    <input type="checkbox" name="permission[]" value="4">gestion des utilisateurs
-                                    <br>
-                                    
-
-                                    <input type="checkbox" name="permission[]" value="5">Modifier les dossiers
-                                    <br>
-                                    
-
-                                    <input type="checkbox" name="permission[]" value="6">Modifier les roles
-                                    <br>
-                                    
-
-                                    <input type="checkbox" name="permission[]" value="7">Voir le plan de classement
+                                   
                                     <br>
                                                                     </div>
                             </div>
