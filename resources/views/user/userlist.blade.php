@@ -35,10 +35,7 @@
     margin-bottom: 15px;
    }
 
-   .styled-table thead tr {
-    background-color: #343a40;
-
-    }
+  
     .panel-heading {
     width: 80% !important;
      }

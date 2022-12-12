@@ -59,8 +59,8 @@
      }
 
     .styled-table thead tr {
-      background-color: #e3e5e8;
-      color: #363f44;
+  
+    
       line-height: 2.3;
       border: 1px solid #c0b9b9;
       }

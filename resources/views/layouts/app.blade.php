@@ -50,8 +50,10 @@
                   <div class="card-header">
                      <img src="{{ asset('assets/img/anp.png') }}" class="logo_css">
                   </div>
+
+              
                   <ul class="hdMnu">
-                     <li class="Mnuli lish  {{ request()->is('home')  ? 'active' : '' }} ">
+                     <li class="Mnuli lish  {{ request()->is('home')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Accueil">
                         <a href="{{route('home')}}">
                         <span class="material-icons">
                         home
@@ -63,7 +65,7 @@
 
                    
                      @if (Auth::user()->hasPermissionTo('gestion des prets')) 
-                        <li class="Mnuli lish  {{ request()->is('prets')  ? 'active' : '' }} ">
+                        <li class="Mnuli lish  {{ request()->is('prets')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des prets">
                            <a href="{{route('prets')}}">
                            <span class="material-icons">file_open</span>
                            </a>
@@ -73,14 +75,14 @@
 
                   
            
-                     <li class="Mnuli lish  {{ request()->is('user_profile')  ? 'active' : '' }} ">
+                     <li class="Mnuli lish  {{ request()->is('user_profile')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Mon Profil">
                         <a href="{{route('user_profile')}}">
                         <span class="material-icons">manage_accounts</span>
                         </a>
                      </li>
 
 
-                     <li class="Mnuli lish  {{ request()->is('request_delete_dossier')  ? 'active' : '' }} ">
+                     <li class="Mnuli lish  {{ request()->is('request_delete_dossier')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="les demandes de suppression ">
                         <a href="{{route('request_delete_dossier')}}">
                         <span class="material-icons">rule_folder</span>
                         </a>
@@ -89,7 +91,7 @@
                  
    
                      @if (Auth::user()->hasRole('admin')) 
-                     <li class="Mnuli lish  {{ request()->is('user_list')  ? 'active' : '' }} ">
+                     <li class="Mnuli lish  {{ request()->is('user_list')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des utilisateurs">
                         <span class="material-icons">
                         <a href="{{route('user_list') }}">
                            
@@ -103,7 +105,7 @@
                 
                    
                      @if (Auth::user()->hasPermissionTo('Modifier le plan de classement')) 
-                     <li class="Mnuli lish {{ request()->is('organigramme')  ? 'active' : '' }}">
+                     <li class="Mnuli lish {{ request()->is('organigramme')  ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Plan de classement">
                         <a href="{{route('home_organigramme')}}">
                            <span class="material-icons  ">
                            account_tree
@@ -120,7 +122,7 @@
 
 
                      @if (Auth::user()->hasRole('admin')) 
-                     <li class="Mnuli lish {{ request()->is('roles')  ? 'active' : '' }}  ">
+                     <li class="Mnuli lish {{ request()->is('roles')  ? 'active' : '' }}  "  data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des roles">
                      <a href="{{route('roles.index') }}">
                         <span class="material-icons">
                         rule
@@ -128,7 +130,7 @@
                      </li>
                      @endif
 
-                     <li class="Mnuli lish">
+                     <li class="Mnuli lish" data-bs-toggle="tooltip" data-bs-placement="top" title="Quitter">
                         
                         <a href="{{route('logout') }}" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -149,15 +151,25 @@
                </div>
             </div>
             <div class="panel_view">
-               <img src="{{ asset('img_app/LOGO_MENU.png') }}" class="logo_menu">
+               <img src="{{ asset('img_app/text830.png') }}" class="logo_menu">
             </div>
             <div class="panel_view_bottom">
 
                  @yield('content')
 
             </div>
+            <footer class="mt-auto block_footer">
+               <p>Copyright 2022 - <strong>ANP</strong> – Tous droits réservés </p>
+             </footer>
          </div>
       </div>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script>
+         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+         return new bootstrap.Tooltip(tooltipTriggerEl)
+         })
+      </script>
    </body>
 </html>

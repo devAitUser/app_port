@@ -402,7 +402,12 @@ input#remember {
 }
 
 .panel_view_bottom {
-  height: 450px;
+  height: 400px;
+}
+
+footer.mt-auto.block_footer {
+  TEXT-ALIGN: CENTER;
+  PADDING-TOP: 15PX;
 }
 
 
@@ -616,7 +621,7 @@ span.ititle_organigramme {
 }
 
 .styled-table thead tr {
-  background-color: #009688;
+  background-color: #155ea4;
   color: #ffffff;
 
 }

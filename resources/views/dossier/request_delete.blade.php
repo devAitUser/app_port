@@ -20,6 +20,9 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script> 
+
+
 <style>
    .panel_view_bottom {
    display: block;
@@ -35,10 +38,7 @@
     margin-bottom: 15px;
    }
 
-   .styled-table thead tr {
-    background-color: #343a40;
-
-    }
+  
     .panel-heading {
     width: 80% !important;
      }
