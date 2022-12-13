@@ -7,6 +7,13 @@
   margin: 27px auto 0;
 }
 
+.tooltip.top .tooltip-inner {
+  background-color:red;
+}
+.tooltip.top .tooltip-arrow {
+    border-top-color: red;
+}
+
 
 
 .panel_view {

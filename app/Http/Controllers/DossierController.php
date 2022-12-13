@@ -215,6 +215,8 @@ class DossierController extends Controller
         $id = "";
         $entites = [];
 
+        $entite_user = [];
+
         $entites = "";
 
         if ($user->projet_select_id != null) {
@@ -225,9 +227,57 @@ class DossierController extends Controller
             $id = $organigramme->id;
 
             $entites = Entite::where("organigramme_id", $id)->get();
+
+
+
+            for ($j = 0; $j < count($dossiers_voir); $j++) {
+                if ($dossiers_voir[$j]["organigrammes_id"] == $id) {
+                    $les_dossiers = $dossiers_voir[$j]["dossiers"];
+                }
+            }
+
+            if ($les_dossiers != "") {
+                $id_dossier = json_decode($les_dossiers, true);
+
+            }
+
+            for ($i = 0; $i < count($entites); $i++) {
+
+                $id_entite = $entites[$i]->id ;  
+                $attributs_dossiers = Dossier_champ::query() ->where([ "parent_id" => 0 ,"entite_id" => $id_entite])->get();
+
+                
+
+                  
+
+
+                     for ($j = 0; $j  < count($attributs_dossiers); $j++) {
+
+                       
+                        if (in_array($attributs_dossiers[$j]->id, $id_dossier)) {
+     
+                             $entite_user[] = $entites[$i];
+                          }
+    
+                      }
+
+                 
+
+                
+
+            }
+
+            
+           
+               
+                
+            
+            
+
+
         }
 
-        return Response()->json($entites);
+        return Response()->json($entite_user);
     }
 
     public function fill_sous_dossier(Request $request)
