@@ -104,6 +104,10 @@ label:last-child input[type=radio] {
 .col-md-6.panel_create_dossier {
     margin: 0 auto;
 }
+
+.form-group.row {
+    padding-top: 15px;
+}
 </style>
 
 

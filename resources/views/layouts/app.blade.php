@@ -59,7 +59,42 @@
                      <img src="{{ asset('assets/img/anp.png') }}" class="logo_css">
                   </div>
 
-                  
+                  <a href="#" data-toggle="tooltip" data-placement="bottom"
+   title="" data-original-title="Tooltip on bottom"
+   class="red-tooltip">Tooltip on bottom</a>
+
+   <style>
+
+
+.tooltip-inner {
+
+  background: #155ea4;
+
+
+}
+
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: #f00 !important;
+}
+
+.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
+  border-right-color: #f00 !important;
+}
+
+
+.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+  border-bottom-color: #f00 !important;
+}
+
+
+.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
+  border-left-color: #f00 !important;
+}
+
+
+
+   </style>
               
                   <ul class="hdMnu">
                      <li class="Mnuli lish  {{ request()->is('home')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Accueil">

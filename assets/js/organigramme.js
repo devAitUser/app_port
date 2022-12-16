@@ -418,13 +418,17 @@ function unset_table() {
           $(".tree").append("<li id='row_"+num+"'  > "+label_entite+" <div id='treeview_"+num+"'> </div> </li> ");
           
         
-
-
-              $("#treeview_"+num).treeview({
-              data: data[i].dossiers,
+          if(data[i].dossiers[0] != undefined) {
+              if(num ==  data[i].dossiers[0]['id_entite'] ){
+                $("#treeview_"+num).treeview({          data: data[i].dossiers,  });
+              }
+          }
+      
+        
+     
               
 
-            });
+          
 
 
          }
@@ -909,8 +913,8 @@ $(document).ready(function() {
                          
                           }
                         
-                          //add_dossier_fill_treeview(data.id_organigramme,data.id_entite,x);
-                          fill_treeview()
+                          add_dossier_fill_treeview(data.id_organigramme,data.id_entite,x);
+                          //fill_treeview()
                         }
 
                         }
@@ -1020,7 +1024,9 @@ function removeRow(e,row,entite,organigramme_id) {
                  })
                  
                  var x =  $("#row_"+entite).prev().attr('id');
-                    add_dossier_fill_treeview(organigramme_id,entite,x);
+                   add_dossier_fill_treeview(organigramme_id,entite,x);
+
+                    //fill_treeview()
                     alert('supprimer avec succes');
                   
 
