@@ -203,7 +203,7 @@
       
                     
                               <div class="form-group row">
-                                 <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">FOND :</label>
+                                 <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Dossiers :</label>
                                  <input  type="text" name="nom_champs_select[]" value="FOND" hidden="">
                                  <div class="col-sm-7">
                                  <select class="form-control" id="parent_select" name="value_select[]">
@@ -298,7 +298,7 @@
                <th >Numero  </th>
                <th > Date de création  </th>
                <th > Titre </th>
-               <th > Opérateur 	</th>
+               <th > Utilisateur 	</th>
                <th >Voir</th>
 
 

@@ -38,6 +38,10 @@
    .panel-heading {
     width: 80% !important;
    }
+   table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    
+        text-transform: uppercase;
+    }
 </style>
 
     
@@ -115,8 +119,8 @@
 
 
                     <div class="form-group">
-                      <label for="nom_organigramme">Nom du plan de classement </label>
-                      <input type="text" class="form-control" name="nom_organigramme"  id="nom_organigramme"  placeholder="Nom du organigramme" required="">
+                      <label for="nom_organigramme"> Ajouter le plan de classement </label>
+                      <input type="text" class="form-control" name="nom_organigramme"  id="nom_organigramme"  placeholder="Nom du plan de classement" required="">
 
                     </div>
 

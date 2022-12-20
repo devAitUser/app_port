@@ -39,6 +39,11 @@
        .table_p {
      display: grid;
      }
+
+     .btn_panel {
+            text-align: center;
+        }
+     
  </style>
 
 
@@ -86,16 +91,27 @@
 
                     </div>
                 </div>
-                <div class="container" style="margin-left:205px">
-                <div class="row">
-                    <button type="submit" class="btn btn-primary ml-4">
-                    créé
-                    </button>
-                    &nbsp;
-                    <button type="reset" class="btn btn-primary">
-                    Annuler
-                    </button>
-                </div>
+                <div class="container" style="">
+             
+                <div class="col-md-12  ">
+
+
+
+
+
+
+
+    
+
+                    <div class="btn_panel">
+                     
+                        
+                           <button type="submit" class="btn btn-primary  mr-3 ">Valider</button>
+                         
+                           <button type="reset" class="btn btn-danger">Annuler</button>
+                    </div>
+                 
+                  </div>
                 </div>
                 </form>
             </div>

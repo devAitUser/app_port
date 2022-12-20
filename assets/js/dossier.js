@@ -10,8 +10,41 @@ function load_name_File(event, id_file) {
     const Array_file = file.split(".");
     let x = Array_file[0];
 
-    $('#Objet_file').val(file);
+    $('#Objet_file'+id_file).val(file);
 
+}
+
+
+function remove_file(event, id_file) {
+
+
+    
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: APP_URL + "/delete_file",
+        method: "post",
+        dataType: "json",
+        data: {
+          id_file:    id_file,
+          id_dossier: $("#id_dossiers").val(),
+        },
+        success: function(data) {
+         
+            if(data.etat){
+                window.location.href = $("#id_dossiers").val();
+            }
+
+           
+           
+
+
+        }
+    })
 }
 
 
@@ -293,8 +326,8 @@ function add_row_select(row) {
                         row_select1 += '<div class="col-sm-6">';
                         row_select1 += ' <input required class="form-control controle_file" type="file" name="file[]" placeholder="Choose file" id="file" onchange="load_name_File(event,' + this.id + ');"> ';
 
-                        row_select1 += '<input type="d-none" class="d-none" id="file_' + this.id + '" name="file_text[]" value="" >';
-
+                        row_select1 += '<input type="d-none" class="d-none" id="file_'+this.id+'" name="file_text[]" value="" >';
+                        row_select1 += '<input id="Objet_file'+this.id+'" type="text" class="form-control"  name="text_objet[]" value="" >';
                         row_select1 += '</div></div>';
                         row_select1 += '</div>';
 
@@ -433,13 +466,18 @@ $(document).ready(function() {
     $("#ajax_call").hide();
 
 
-
+    $(".btn1").click(function() {
+        $("#ajax_call").hide();
+    });
 
     $(".btn1").click(function() {
         $("#ajax_call").hide();
     });
-    $(".btn2").click(function() {
-        $("#ajax_call").show();
+    $(".add_fichier").click(function() {
+      
+      var option = $(this).attr('id_champs');
+          $('#id_champs_f').val(option);
+          
     });
 
 
@@ -475,12 +513,8 @@ $(document).ready(function() {
         }
 
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajaxSetup({
+     
+      $.ajaxSetup({
           headers: {
               'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
           }

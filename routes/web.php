@@ -149,6 +149,8 @@ Route::get('/api_all_dossier',[App\Http\Controllers\DossierController::class, 'a
 
 Route::get('/delete_dossier/{id}',[App\Http\Controllers\DossierController::class, 'delete_dossier'])->name('delete_dossier');
 
+Route::post('/delete_file',[App\Http\Controllers\DossierController::class, 'delete_file'])->name('delete_file');
+
 Route::post('/update_dossier/{id}',[App\Http\Controllers\DossierController::class, 'update_dossier'])->name('update_dossier');
 
 Route::post('/save_file',[App\Http\Controllers\DossierController::class, 'save_file'])->name('save_file');

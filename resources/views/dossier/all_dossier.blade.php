@@ -197,7 +197,7 @@
                         <th width="15%">Numero  </th>
                         <th width="25%"> Date de création  </th>
                         <th width="40%"> Titre </th>
-                        <th width="30%"> Opérateur 	</th>
+                        <th width="30%"> Utilisateur 	</th>
                         <th width="30%">Voir</th>
 
 

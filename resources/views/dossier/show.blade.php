@@ -3,8 +3,9 @@
 <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script> 
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -89,7 +90,7 @@
 
       table.tbl_profil tr td {
          padding: 9px;
-         text-align: right;
+         text-align: left;
       }
 
       .input_doc_info_table {
@@ -115,6 +116,22 @@
 
       .modal-footer {
          justify-content: space-between;
+      }
+
+      .list_file .btn_file::before {
+         width: 1.25em;
+         line-height: 0;
+      
+         content:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+         transition: transform 0.35s ease;
+         transform-origin: 0.5em 50%;
+      }
+      .list_file .btn_file[aria-expanded="true"]::before {
+         transform: rotate(90deg);
+      }
+
+      button.btn.btn_file.d-inline-flex.align-items-center.rounded.collapsed {
+         width: 50%;
       }
       
 </style>
@@ -279,88 +296,92 @@
            
       
                   <table id="id_table_print" class="tbl_profil">
-                    <tr>
-                        <td class="td_1">Ajouter un nouveau fichier:</td>
-                        <td> 
-                                          
-      
-                           <div class="control_block">
-
-                              
-
-                              <div class="col-xsm mr-2">
-                                 <span class="" target="_blank">
-                                    <span class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#add_fichier" href="">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                        </svg>
-                                    </span>
-                                 </span>
-                                </div>
-                           </div>
-
+                 
                   
+                    <tr>
+                     <td>
+                        <ul class="list_file list-unstyled mb-0 py-3 pt-md-1">
+           
+                           </li>
 
-                                                            
-                       </td>
-
-
-                   </tr>
-                   @for ($i = 0; $i < count($attributs) ; $i++)
-
-                       @if($attributs[$i]->type_champs == "Fichier")
-      
-      
-                       <tr>
-                                    <td class="td_1">{{$attributs[$i]->nom_champs}} :</td>
-                                    <td> 
-                                   
-                                          
-                                        
-      
-                                          
-      
-      
-                                          <div class="control_block">
-      
-                                            
-      
-                                             <div class="col-xsm mr-2">
-                                                <a href="{{ asset('public/storage/'.$attributs[$i]->valeur ) }} " target="_blank">
-                                                   <span class="btn btn-warning btn_show_pdf" href="">
-                                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
-                                                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
-                                                      </svg>
-                                                   </span>
-                                                </a>
-                                               </div>
-                                          </div>
-      
-                                 
-      
-                                      
-
-                                           
-
-                                        
-                                 
-                                    </td>
-      
-      
-                              </tr>
-      
-      
+                           <?php for($j=0;$j<count($attributs_dossier);$j++){ ?>
+                           
+                           <li>
                               
-                   
-      
-                        @endif
-                    @endfor
+
+                              <div class="name_file pt-3">
+
+                             
+
+                              <button class="btn btn_file d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#row<?php echo $attributs_dossier[$j]['id']  ?>" aria-expanded="false">
+                                 <?php echo $attributs_dossier[$j]['nom_champs']  ?> &ensp; &ensp; &ensp;
+                                 <span class="" target="_blank">
+                                  
+                                   
+                                 </span>
+                              </button>
+
+                              <span class="btn btn-warning add_fichier " id_champs="<?php echo $attributs_dossier[$j]['id']  ?>" data-bs-toggle="modal" data-bs-target="#add_fichier" href="">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                  </svg>
+                              </span>
+                              </div>
+
+                               <div class="collapse" id="row<?php echo $attributs_dossier[$j]['id']  ?>" style="">
+                                 <ul class="list-unstyled fw-normal pb-1 small">
+                                    <input id="id_dossiers" type="text" value="{{$id}} " name='id_dossier' hidden>
+                                    <table>
+                                       <tr>
+                                          <td>Nom de fichier</td>
+                                          <td>Action</td>
+                                       </tr>
+                                    <?php for($i=0;$i<count($attributs_dossier[$j]['child_files']);$i++){ ?>
+                                       
+                                       <tr>
+                                          <td><a style="text-decoration: none;" href="#" class="d-inline-flex  rounded"><?php echo $attributs_dossier[$j]['child_files'][$i]['file']   ?></a></td>
+                                          <td>
+                                             {{ csrf_field() }}
+                                             <input type="text" value="<?php echo $attributs_dossier[$j]['child_files'][$i]['id']   ?>" name='id_champs_file' hidden>
+                                             
+                                             <button type="button" class="btn btn-danger mr-3 " onclick="remove_file(event,<?php echo $attributs_dossier[$j]['child_files'][$i]['id']   ?> )">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"></path></svg></button>
+                                             <a href="{{ asset('public/storage/'.$attributs_dossier[$j]['child_files'][$i]['name_file'] ) }} " target="_blank"> 
+                                           
+                                             <button type="button" class="btn btn-primary" >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                   <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
+                                                   <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+                                                </svg></button>
+                                             </a>
+                                             </td>
+                                       </tr>
+                                   
+                                     <?php } ?>
+                                    
+                                     
+                                      
+                                     </table>
+                                 </ul>
+                               </div>
+                              
+                           </li>
+
+                           <?php } ?>
+                           
+                         
+                       </ul>
+                     </td>
+                    </tr>
       
                  
           
                   </table>
+
+                  
+
+                 
 
 
                  
@@ -401,9 +422,14 @@
 
           </div>
 
+         
+
           
           <script src="{{asset('assets/js/datatables.min.js')}}"></script>
            <script src="{{asset('assets/js/historique.js')}}"></script>
+
+
+          
 
      
       </div>
@@ -469,13 +495,15 @@
                <tr>
                   <td>Selectionner le fichier :  &nbsp;&nbsp;</td>
                   <td>
+
+                     <input id="id_champs_f" type="text" name="id_champs_f" value="" hidden>
                      <input required="" class="form-control controle_file" type="file" name="file" placeholder="Choose file" id="file" onchange="load_name_File(event,3);">
                   </td>
                </tr>
             </table>
             
             <label for="exampleFormControlTextarea1">Objet :</label>
-            <textarea id="Objet_file" class="form-control" name="Objet" rows="3" required></textarea>
+            <textarea id="Objet_file3" class="form-control" name="Objet" rows="3" required></textarea>
           </div>
        </div>
        <div class="modal-footer">

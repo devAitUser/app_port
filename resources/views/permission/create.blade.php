@@ -26,7 +26,7 @@
 
 
 
-                        <div class="container" style="margin-left:205px">
+                        <div class="container" style="">
                             <div class="row">
                                 <button type="submit" class="btn btn-primary ml-4">
                                     {{ __('Register') }}

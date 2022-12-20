@@ -65,7 +65,7 @@
             
         </div>
 
-        <img src="{{ asset('img_app/office-g.png') }}" class="img_archives">
+      
 
 </div>
 @endsection

@@ -25,6 +25,8 @@ use Session;
 use Illuminate\Http\Request;
 
 use App\Models\Historique_dossier;
+use App\Models\File_champ;
+
 
 class DossierController extends Controller
 {
@@ -218,6 +220,7 @@ class DossierController extends Controller
         $entite_user = [];
 
         $entites = "";
+        $attr_d = [];
 
         if ($user->projet_select_id != null) {
             $projet_select_id = $user->projet_select_id;
@@ -255,8 +258,13 @@ class DossierController extends Controller
 
                        
                         if (in_array($attributs_dossiers[$j]->id, $id_dossier)) {
+                            if(!in_array($id_entite, $attr_d)){
+
+                            
      
                              $entite_user[] = $entites[$i];
+                             $attr_d[] = $id_entite;
+                            }
                           }
     
                       }
@@ -370,21 +378,18 @@ class DossierController extends Controller
                     $attributs_dossier1 = new Attributs_dossier();
                     $attributs_dossier1->nom_champs =
                         $request->nom_champ_file[$i];
-                    $attributs_dossier1->valeur = $request
-                        ->file("file")
-                        [$i]->store("files");
-                    $attributs_dossier1->type_champs = "Fichier";
+                    $attributs_dossier1->valeur = 'Fichier';
+                    $attributs_dossier1->type_champs = "Fichier" ;
                     $attributs_dossier1->dossier_id = $dossier->id;
                     $attributs_dossier1->save();
 
-                    if ($attributs_dossier1->valeur != "") {
-                        $file = new File_searche();
-                        $file->filename = $attributs_dossier1->nom_champs;
-                        $file->content = $request->file_text[$i];
-                        $file->dossier_id = $dossier->id;
-                        $file->attributs_dossiers_id = $attributs_dossier1->id;
-                        $file->projet_id = $request->id_organigramme;
-                        $file->save();
+                    if ($request->text_objet[$i] != "" ) {
+                        
+                        $file_champ = new File_champ();
+                        $file_champ->champs_id =$attributs_dossier1->id;
+                        $file_champ->name_file =  $request->file("file")[$i]->store("files");
+                        $file_champ->file = $request->text_objet[$i];
+                        $file_champ->save();
                     }
                 }
             }
@@ -425,6 +430,18 @@ class DossierController extends Controller
 
         $all_historiques = [];
 
+        $attributs_dossier = [];
+
+        for ($i = 0; $i < count($attributs ); $i++) {
+
+            if($attributs[$i]->type_champs == "Fichier"){
+                $file_champ = File_champ::where(["champs_id" => $attributs[$i]->id])->get();
+                $attributs_dossier[]= array("id" => $attributs[$i]->id ,"nom_champs" => $attributs[$i]->nom_champs,"child_files" =>  $file_champ);
+            }
+
+            
+        }    
+
         for ($i = 0; $i < count($historique); $i++) {
             $createdAt = Carbon::parse($historique[$i]->created_at);
 
@@ -441,6 +458,7 @@ class DossierController extends Controller
             "attributs" => $attributs,
             "id" => $id,
             "all_historiques" => $all_historiques,
+            "attributs_dossier" => $attributs_dossier,
             "date_create_dossier" => $date_create_dossier,
             "user_create_dossier" => $user_create_dossier,
             "check_demande_supperssion" => $check_demande_supperssion,
@@ -1190,13 +1208,30 @@ class DossierController extends Controller
 
     public function save_file(Request $request)
     {
-        $attributs_dossier1 = new Attributs_dossier();
-        $attributs_dossier1->nom_champs = $request->Objet;
-        $attributs_dossier1->valeur = $request->file("file")->store("files");
-        $attributs_dossier1->type_champs = "Fichier";
-        $attributs_dossier1->dossier_id = $request->id_dossier;
-        $attributs_dossier1->save();
+    
+
+
+        $file_champ = new File_champ();
+        $file_champ->champs_id = $request->id_champs_f;
+        $file_champ->name_file = $request->file("file")->store("files");
+        $file_champ->file = $request->Objet;
+        $file_champ->save();
 
         return redirect("/show_dossier/" . $request->id_dossier);
+    }
+    public function delete_file(Request $request)
+    {
+    
+
+
+        $file_champ =  File_champ::find($request->id_file);
+
+        unlink(storage_path('app/public/'.$file_champ->name_file));
+
+
+        $file_champ->delete();
+        
+       // return redirect("/show_dossier/" . $request->id_dossier);
+       return Response()->json(["etat" => true]);
     }
 }

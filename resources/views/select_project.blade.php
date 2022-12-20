@@ -127,12 +127,12 @@ label:last-child input[type=radio] {
 
 
                         <div class="form-group row">
-                           <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm">les Divisions :</label>
+                           <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm"> Divisions :</label>
                            <input type="text" name="id_view" value="{{$id_view}}" hidden>
                            <input  type="text" name="nom_champs_select[]" value="FOND" hidden="">
                            <div class="col-sm-6">
                          
-                              <select class="profil_entite" name="projet_user" value="{{ $user['entite'] }}" id="" size="5">
+                              <select class="form-select profil_entite" name="projet_user" value="{{ $user['entite'] }}" id="" >
                   
 
                                  <?php for($i=0;$i<count($projets);$i++){ ?>

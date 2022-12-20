@@ -154,4 +154,8 @@ $(document).ready(function() {
      
     fill_table();
 
+    $(".collapsed").click(function(e){
+      e.preventDefault();
+    });
+
  } );

@@ -59,9 +59,7 @@
                      <img src="{{ asset('assets/img/anp.png') }}" class="logo_css">
                   </div>
 
-                  <a href="#" data-toggle="tooltip" data-placement="bottom"
-   title="" data-original-title="Tooltip on bottom"
-   class="red-tooltip">Tooltip on bottom</a>
+               
 
    <style>
 
