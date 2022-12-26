@@ -106,7 +106,7 @@
 
 
                    
-                     @if (Auth::user()->hasPermissionTo('gestion des prets')) 
+                     @if (Auth::user()->hasPermissionTo('Gestion des prets')) 
                         <li class="Mnuli lish  {{ request()->is('prets')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des prets">
                            <a href="{{route('prets')}}">
                            <span class="material-icons">file_open</span>

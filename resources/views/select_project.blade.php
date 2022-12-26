@@ -101,8 +101,19 @@
 label:last-child input[type=radio] {
   transform: scale(1.5);
 }
-.col-md-6.panel_create_dossier {
+.col-md-8.panel_create_dossier {
     margin: 0 auto;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    color: var(--bs-btn-active-color);
+    background-color: #155ea4;
+    border-color: var(--bs-btn-active-border-color);
+}
+.btn:first-child:hover, :not(.btn-check)+.btn:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: #155ea4;
+  
 }
 </style>
 
@@ -118,7 +129,7 @@ label:last-child input[type=radio] {
             @csrf
       <div class="row">
          
-         <div class="col-md-6 panel_create_dossier ">
+         <div class="col-md-8 panel_create_dossier ">
             <div class="row panel_add">
 
               <div class="col-md-12">
@@ -128,27 +139,20 @@ label:last-child input[type=radio] {
 
                         <div class="form-group row">
                            <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm"> Divisions :</label>
-                           <input type="text" name="id_view" value="{{$id_view}}" hidden>
+                           <input type="text" name="id_view" value="{{$id_view}}" id="id_view" hidden>
                            <input  type="text" name="nom_champs_select[]" value="FOND" hidden="">
                            <div class="col-sm-6">
                          
-                              <select class="form-select profil_entite" name="projet_user" value="{{ $user['entite'] }}" id="" >
-                  
+                        
 
-                                 <?php for($i=0;$i<count($projets);$i++){ ?>
-                                           
-                                                      
-                                    <?php if($projets[$i]['id'] == $user['projet_select_id'] ) {  ?>
-                                          <option value="<?php echo $projets[$i]['id']; ?>" selected><?php echo $projets[$i]['nom']; ?></option>
-                                          <?php  } else {  ?>
-                                          <option value="<?php echo $projets[$i]['id']; ?>" ><?php echo $projets[$i]['nom']; ?></option>
-                                          <?php  } ?>
-                           
+                              <?php for($i=0;$i<count($projets);$i++){ ?>
+                                 <?php if($projets[$i]['id'] == $user['projet_select_id'] ) {  ?>
+                              <button type="button" id_division='<?php echo $projets[$i]['id']; ?>' class="btn btn-danger mt-1 active btn_project"><?php echo $projets[$i]['nom']; ?></button>
+                                 <?php  } else {  ?>
+                              <button type="button" id_division='<?php echo $projets[$i]['id']; ?>' class="btn btn-danger mt-1 btn_project "><?php echo $projets[$i]['nom']; ?></button>
                    
-                                     <?php  } ?>
-                                
-                              </select>
 
+                              <?php }  } ?>
                               
                            </div>
                         </div>
@@ -185,9 +189,9 @@ label:last-child input[type=radio] {
            <div class="btn_panel">
             
                
-                  <button type="submit" class="btn btn-primary  mr-3 " >Valider</button>
+                  <button type="button" class="btn btn-primary  mr-3 btn_send " >Valider</button>
                 
-                  <button type="button" class="btn btn-danger" >Accueil</button>
+                  <button type="button" class="btn btn-danger " >Accueil</button>
            </div>
         
          </div>

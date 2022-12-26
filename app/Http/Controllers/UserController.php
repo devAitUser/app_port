@@ -125,7 +125,7 @@ class UserController extends Controller
         $user->projet_select_id = $request->projet_user;
          $user->save();
 
-         return redirect()->route('user_profile');
+         return redirect()->route('home');
 
     }
 

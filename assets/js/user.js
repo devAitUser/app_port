@@ -59,11 +59,17 @@ $(document).ready(function() {
           var new_count =0;
        
           new_count =parseInt(count)+1;
-         
+
+
+          var btn = '<div class="button-container">';
+
+          btn += '<button type="button"  id="btn_'+id_select+'"   onclick="selectAll'+id_select+'()">Tout sélectionner</button>';
+          btn += ' <button type="button" id="btn1_'+id_select+'" onclick="deselectAll'+id_select+'()"> Tout déselectionner</button>';
+          btn += ' </div>';
 
           var row = '<div id="row'+id_select +'" class="row mb-3">'
            row += '<input type="text" value="'+id_select+'" name="organigramme_id[]" hidden><label for="select_tree'+id_select+'" class="col-md-4 col-form-label text-md-end">Les Dossiers a Consulter dans  <strong> '+text_select+' </strong>  </label>'
-           row += '<div class="col-md-6">'
+           row += '<div class="col-md-6">'+btn
            row += '<select id="select_tree'+id_select+'"  multiple="multiple" class="form-control"  name="dossiers'+id_select+'[]">'
            row += '</select> </div>'
           
@@ -90,6 +96,21 @@ $(document).ready(function() {
            
            $('#select_tree_up_'+id_select).html(data);
            count++;
+
+
+         
+
+            $("#btn_"+id_select).click(function(){
+              $("#select_tree"+id_select+" > option").prop("selected", true);
+              $("#select_tree"+id_select).trigger("change");
+            }); 
+
+            $("#btn1_"+id_select).click(function(){
+              $("#select_tree"+id_select+" > option").prop("selected", false);
+              $("#select_tree"+id_select).trigger("change");
+            }); 
+
+           
           
   
         }

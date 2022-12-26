@@ -104,6 +104,8 @@ Route::get('/select_project/{id}',[App\Http\Controllers\DossierController::class
 
 Route::post('/choose_project',[App\Http\Controllers\DossierController::class, 'choose_project']);
 
+Route::post('/choose_project1',[App\Http\Controllers\DossierController::class, 'choose_project']);
+
 Route::get('/create_dossier',[App\Http\Controllers\DossierController::class, 'create_dossier'])->name('create_dossier');
 Route::get('/fill_parent_dossier',[App\Http\Controllers\DossierController::class, 'fill_parent_dossier']);
 Route::get('/fill_parent_dossier_consulter',[App\Http\Controllers\DossierController::class, 'fill_parent_dossier_consulter']);

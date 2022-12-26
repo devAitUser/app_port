@@ -153,12 +153,23 @@
                               </select>
                            </div>
                         </div>
+
+                       
+
+                        
+               
+
+
                         <input type="text" value="{{$count_projet}}" id="count_projet" hidden>
                         <?php  for($i=0;$i<count($les_projets);$i++){ ?>
                         <div id="row<?php echo $les_projets[$i]['id']; ?>" class="row mb-3 row_project">
                            <input type="text" value="<?php echo $les_projets[$i]['id']; ?>" name="organigramme_id[]" hidden>
                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Les Dossiers a Consulter dans <strong> <?php echo $les_projets[$i]['nom_organigrammes']; ?> </strong>  </label>
                            <div class="col-md-6">
+                              <div class="button-container">
+                                 <button type="button" onclick="selectAll{{$les_projets[$i]['id']}}()">Tout sélectionner</button>
+                                 <button type="button" onclick="deselectAll{{$les_projets[$i]['id']}}()"> Tout déselectionner </button>
+                               </div>
                               <select id="select_tree<?php echo $les_projets[$i]['id']; ?>" multiple="multiple" name="dossiers<?php echo $les_projets[$i]['id']; ?>[]" class=" form-control ">
                                  <?php for($j=0;$j<count($les_projets[$i]['dossiers']);$j++){ ?>
                                     <?php if ($les_projets[$i]['dossiers'][$j]['parent_id'] == 0){  ?>
@@ -172,16 +183,34 @@
                                           <option value="<?php echo $les_projets[$i]['dossiers'][$j]['id']; ?>" ><?php echo $les_projets[$i]['dossiers'][$j]['nom_champs']; ?></option>
                                        <?php  } ?>
                                     <?php } ?>
+                                    
                                  <?php } ?>
                               </select>
                            </div>
-                           
+
+                          
 
                            <script>
+
+                              
+                             
                                var id_select = {!! json_encode($les_projets[$i]['id']) !!}
-                              $('#select_tree'+id_select).select2({});
+                              $('#select_tree'+{!! json_encode($les_projets[$i]['id']) !!}).select2({});
+
+                              function selectAll{{$les_projets[$i]['id']}}() {
+                                 $("#select_tree"+{!! json_encode($les_projets[$i]['id']) !!}+" > option").prop("selected", true);
+                                 $("#select_tree"+{!! json_encode($les_projets[$i]['id']) !!}).trigger("change");
+                              }
+
+                              function deselectAll{{$les_projets[$i]['id']}}() {
+                                 $("#select_tree"+{!! json_encode($les_projets[$i]['id']) !!}+" > option").prop("selected", false);
+                                 $("#select_tree"+{!! json_encode($les_projets[$i]['id']) !!}).trigger("change");
+                              }
+
+                            
                            
                            </script>
+                           
                         </div>
                         <?php  } ?>
                      </div>

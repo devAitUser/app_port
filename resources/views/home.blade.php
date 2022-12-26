@@ -28,7 +28,7 @@
       </div>
       <div class="panel_view_info">
       <ul>
-            @if ($ckeck_select)
+            
             @if (Auth::user()->hasPermissionTo('Créer les dossiers'))
             
                <li class="link_menu__left" onclick="window.open('{{url('select_project/1')}}', '_self');">
@@ -47,9 +47,9 @@
                   </div>
                   </a>
                </li> --}}
+              
                @endif
-               @endif
-            @if ($ckeck_select)  
+            
                <li class="link_menu__left" onclick="window.open('{{url('select_project/2')}}', '_self');">
                   <span class="icon_menu_left" >
                   <img src="{{ asset('img_app/folder-search-icon.png') }}" style="width: 20px;">
@@ -79,7 +79,7 @@
                <a href="{{ route('boites.index') }}">   <span class="label_menu _left"> Gestion des boites   </span></a>
                </li> --}}
 
-               @endif
+               
 
          </ul>
          <ul class="block_archive">

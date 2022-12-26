@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('permission_user', function ()
         {
             $value = false;
-             if (Auth::user()->hasPermissionTo('gestion des utilisateurs'))
+             if (Auth::user()->hasPermissionTo('Gestion des utilisateurs'))
             {
               $value = true;
             }

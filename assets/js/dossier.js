@@ -451,6 +451,60 @@ function fill_entite() {
 $(document).ready(function() {
 
 
+    $(".btn_project").click(function(){
+        $(".btn_project").removeClass("active");
+        $(this).addClass("active");
+      });
+
+
+
+      $(".btn_send").click(function(){
+        var id_division =  $(".active").attr("id_division");
+        var id_view =  $("#id_view").val();
+
+   
+       
+      
+           $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: APP_URL+"/choose_project",
+            method: "post",
+            data: {
+                projet_user: id_division ,
+                id_view: id_view 
+            },
+            success: function(data) {
+
+              
+
+                switch(id_view) {
+                    case "1":
+                        window.location.href = APP_URL+ "/create_dossier";
+                      break;
+                    case "2":
+                        window.location.href = APP_URL+ "/recherche_dossier";
+                      break;
+                    default:
+                        window.location.href = APP_URL;
+                        break;
+                  }
+            
+
+               
+
+         
+
+            }
+        })
+
+
+      });
+
+
 
 
     $(document).ajaxStart(function() {
