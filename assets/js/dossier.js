@@ -48,6 +48,30 @@ function remove_file(event, id_file) {
 }
 
 
+function fonction_checkbox(){
+    if (document.getElementById('version_physique_btn').checked) 
+    {
+        
+      
+        $('#VERSION_PHYSIQUE').val('OUI');
+
+        $("#row_salle").removeClass("d-none");
+        $('#row_rayonnage').removeClass('d-none');
+        $('#row_conteneur').removeClass('d-none');
+        $('#row_boite').removeClass('d-none');
+       
+    } else 
+    {
+       $('#VERSION_PHYSIQUE').val('NON');
+       
+       $('#row_salle').addClass('d-none');
+       $('#row_rayonnage').addClass('d-none');
+       $('#row_conteneur').addClass('d-none');
+       $('#row_boite').addClass('d-none');
+    }
+  }
+
+
 function loadFile(event, id_file) {
     event.preventDefault();
 
@@ -324,7 +348,7 @@ function add_row_select(row) {
                         row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">' + this.nom_champs + ' :</label>';
                         row_select1 += '<input type="text" name="nom_champ_file[]" value="' + this.nom_champs + ' " class="d-none"> ';
                         row_select1 += '<div class="col-sm-6">';
-                        row_select1 += ' <input required class="form-control controle_file" type="file" name="file[]" placeholder="Choose file" id="file" onchange="load_name_File(event,' + this.id + ');"> ';
+                        row_select1 += ' <input  class="form-control controle_file" type="file" name="file[]" placeholder="Choose file" id="file" onchange="load_name_File(event,' + this.id + ');"> ';
 
                         row_select1 += '<input type="d-none" class="d-none" id="file_'+this.id+'" name="file_text[]" value="" >';
                         row_select1 += '<input id="Objet_file'+this.id+'" type="text" class="form-control"  name="text_objet[]" value="" >';
@@ -341,10 +365,31 @@ function add_row_select(row) {
                 });
 
 
+                var vesrion= " dispose d&#039;une version physique";
+
+                row_select1 = '<div id="" class="col-md-12">';
+                row_select1 += '<div class="form-group row">';
+                row_select1 += " <label for='colFormLabelSm' class=' text-uppercase col-sm-6 col-form-label col-form-label-sm'>dispose d'une version physique :</label>";
+                row_select1 += "<input type='text' name='nom_champ[]'  value='"+vesrion+"' class='d-none'> ";
+                row_select1 += '<input type="text" name="id_champs[]"  value="" class="d-none"> ';
+                row_select1 += '<input type="text" name="type_champ[]" value="text" class="d-none" required> <div class="col-sm-6">';
+
+            
+                row_select1 += '<div class="form-check form-switch">';
+                row_select1 += ' <input class="form-check-input"  type="checkbox" id="version_physique_btn" onclick="fonction_checkbox()" >';
+                row_select1 += '<input type="text" id="VERSION_PHYSIQUE" class="d-none" name="valeur[]" value="NON" >';
+                row_select1 += '</div>';
+
+                row_select1 += '</div></div>';
+                row_select1 += '</div>';
+
+                $("#attribut_champ").append(row_select1);
+
+
                 for (let index = 0; index < coordonnees.length; index++) {
                     var nom_champs = coordonnees[index];
         
-                    row_select1 = '<div id="" class="col-md-12">';
+                    row_select1 = '<div id="row_'+nom_champs+'" class="col-md-12">';
                     row_select1 += '<div class="form-group row">';
                     row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">'+nom_champs+' :</label>';
                     row_select1 += '<input type="text" name="nom_champ[]"  value="'+nom_champs+' " class="d-none"> ';
@@ -360,25 +405,13 @@ function add_row_select(row) {
                     
                   }
 
-                  var vesrion= " dispose d&#039;une version physique";
 
-                    row_select1 = '<div id="" class="col-md-12">';
-                    row_select1 += '<div class="form-group row">';
-                    row_select1 += " <label for='colFormLabelSm' class=' text-uppercase col-sm-6 col-form-label col-form-label-sm'>dispose d'une version physique :</label>";
-                    row_select1 += "<input type='text' name='nom_champ[]'  value='"+vesrion+"' class='d-none'> ";
-                    row_select1 += '<input type="text" name="id_champs[]"  value="" class="d-none"> ';
-                    row_select1 += '<input type="text" name="type_champ[]" value="text" class="d-none" required> <div class="col-sm-6">';
+                    $('#row_salle').addClass('d-none');
+                    $('#row_rayonnage').addClass('d-none');
+                    $('#row_conteneur').addClass('d-none');
+                    $('#row_boite').addClass('d-none');
 
-                
-                    row_select1 += '<div class="form-check form-switch">';
-                    row_select1 += ' <input class="form-check-input"  type="checkbox" id="version_physique_btn" onclick="fonction_checkbox()" >';
-                    row_select1 += '<input type="text" id="VERSION_PHYSIQUE" class="d-none" name="valeur[]" value="NON" >';
-                    row_select1 += '</div>';
-
-                    row_select1 += '</div></div>';
-                    row_select1 += '</div>';
-
-                    $("#attribut_champ").append(row_select1);
+                 
 
 
 

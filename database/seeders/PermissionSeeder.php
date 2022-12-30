@@ -16,7 +16,7 @@ class PermissionSeeder extends Seeder
     {
         //
         Permission::create(['name' => 'gestion des boites']);
-        Permission::create(['name' => 'Créer les dossiers']);
+        Permission::create(['name' => 'Créer un dossier']);
         Permission::create(['name' => 'Créer les boites']);
         Permission::create(['name' => 'Plan de classement']);
         Permission::create(['name' => 'gestion des utilisateurs']);

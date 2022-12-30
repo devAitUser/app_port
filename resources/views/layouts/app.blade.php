@@ -95,6 +95,7 @@
    </style>
               
                   <ul class="hdMnu">
+                     <li class="badge_role"> <h6>  <span class="badge bg-danger"> Division : {{$role_name}} </span></h6></li>
                      <li class="Mnuli lish  {{ request()->is('home')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Accueil">
                         <a href="{{route('home')}}">
                         <span class="material-icons">

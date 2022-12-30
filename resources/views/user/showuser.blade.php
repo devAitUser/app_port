@@ -8,6 +8,16 @@
    .panel_view_bottom {
    display: block;
    }
+   .container.btn_role_bottom {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    }
+    .btn_role_bottom button {
+    width: 100px;
+    margin: 0 auto;
+    }
    span.title_profil {
    padding-left: unset !important; 
    }
@@ -167,8 +177,8 @@
                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Les Dossiers a Consulter dans <strong> <?php echo $les_projets[$i]['nom_organigrammes']; ?> </strong>  </label>
                            <div class="col-md-6">
                               <div class="button-container">
-                                 <button type="button" onclick="selectAll{{$les_projets[$i]['id']}}()">Tout sélectionner</button>
-                                 <button type="button" onclick="deselectAll{{$les_projets[$i]['id']}}()"> Tout déselectionner </button>
+                                 <button class="btn_select" type="button" onclick="selectAll{{$les_projets[$i]['id']}}()">Tout sélectionner</button>
+                                 <button  class="btn_select" type="button" onclick="deselectAll{{$les_projets[$i]['id']}}()"> Tout déselectionner </button>
                                </div>
                               <select id="select_tree<?php echo $les_projets[$i]['id']; ?>" multiple="multiple" name="dossiers<?php echo $les_projets[$i]['id']; ?>[]" class=" form-control ">
                                  <?php for($j=0;$j<count($les_projets[$i]['dossiers']);$j++){ ?>
@@ -266,7 +276,7 @@
                               </select>
                            </div>
                         </div>
-                        <div class="container" style="margin-left:205px">
+                        <div class="container btn_role_bottom" >
                            <div class="row">
                               <button type="submit" class="btn btn-primary ml-4">
                                  Mettre à jour le rôle

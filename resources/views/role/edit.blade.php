@@ -21,6 +21,12 @@
    .panel-heading {
     width: 80% !important;
    }
+   .container.btn_role_bottom {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    }
 </style>
 
 @section('content')
@@ -116,7 +122,7 @@
 
 
 
-                        <div class="container" style="margin-left:205px">
+                        <div class="container btn_role_bottom" >
                             <div class="row">
                                 <button type="submit" class="btn btn-primary ml-4">
                                     {{ __('Ajouter') }}

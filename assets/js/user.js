@@ -63,8 +63,8 @@ $(document).ready(function() {
 
           var btn = '<div class="button-container">';
 
-          btn += '<button type="button"  id="btn_'+id_select+'"   onclick="selectAll'+id_select+'()">Tout sélectionner</button>';
-          btn += ' <button type="button" id="btn1_'+id_select+'" onclick="deselectAll'+id_select+'()"> Tout déselectionner</button>';
+          btn += '<button class="btn_select" type="button"  id="btn_'+id_select+'"   onclick="selectAll'+id_select+'()">Tout sélectionner</button>';
+          btn += ' <button class="btn_select" type="button" id="btn1_'+id_select+'" onclick="deselectAll'+id_select+'()"> Tout déselectionner</button>';
           btn += ' </div>';
 
           var row = '<div id="row'+id_select +'" class="row mb-3">'

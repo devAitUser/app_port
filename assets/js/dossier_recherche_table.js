@@ -63,6 +63,18 @@ $(document).ready(function() {
         .clear()
         .draw();
         table = $('#organigramme_table').DataTable( {
+
+            responsive: {
+              details: {
+                  display: $.fn.dataTable.Responsive.display.modal( {
+                      header: function ( row ) {
+                          var data = data.all_dossiers;
+                          return 'Details for '+data[0]+' '+data[1];
+                      }
+                  } ),
+                 
+              }
+          },
         
           columnDefs: [
             { targets: 0, width: '120px' },    
@@ -221,7 +233,7 @@ $(document).ready(function() {
             
 
             $.ajax({
-              url:APP_URL+"/api_search_table",
+              url:APP_URL+"/api_search_table1",
               method:"POST",
               data:$(this).serialize(),
               success:function(data){
@@ -299,7 +311,7 @@ $(document).ready(function() {
             
 
           $.ajax({
-            url:APP_URL+"/api_search_table",
+            url:APP_URL+"/api_search_table1",
             method:"POST",
             data:$(this).serialize(),
             success:function(data){

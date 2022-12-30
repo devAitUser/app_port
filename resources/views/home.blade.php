@@ -19,7 +19,7 @@
 </style>
 
 <div class="block_menu left">
-   
+ 
         
       
         
@@ -29,7 +29,7 @@
       <div class="panel_view_info">
       <ul>
             
-            @if (Auth::user()->hasPermissionTo('Créer les dossiers'))
+            @if (Auth::user()->hasPermissionTo('Créer un dossier'))
             
                <li class="link_menu__left" onclick="window.open('{{url('select_project/1')}}', '_self');">
                   <span class="icon_menu_left" >
@@ -96,7 +96,7 @@
                      Total des Dossiers indexé  <b><span ><b> ({{$Count}})  </b>
                      </span></b></a>
                   </li>
-                  @if (Auth::user()->hasPermissionTo('Créer les dossiers'))
+                  @if (Auth::user()->hasPermissionTo('Créer un dossier'))
                   <li class="li_block_archive last_item_bskli">
                      <a href="#">
                      <img src="{{ asset('img_app/62917-open-file-folder-icon.png') }}" style="width: 22px;vertical-align: sub;" alt="">
@@ -119,7 +119,7 @@
          </ul>
       </div>
 
-      <div class="block_menu right @if (!Auth::user()->hasPermissionTo('Créer les dossiers')) w_menu_right @endif">
+      <div class="block_menu right @if (!Auth::user()->hasPermissionTo('Créer un dossier')) w_menu_right @endif">
          <ul>
        
          </ul>

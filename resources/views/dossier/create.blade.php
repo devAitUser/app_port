@@ -101,7 +101,7 @@
 label:last-child input[type=radio] {
   transform: scale(1.5);
 }
-.col-md-6.panel_create_dossier {
+.col-md-8.panel_create_dossier {
     margin: 0 auto;
 }
 
@@ -111,7 +111,7 @@ label:last-child input[type=radio] {
 </style>
 
 
-<div class="panel-heading">   Créer un nouveau dossier dans la Division  <strong>{{ $nom_projet }}</strong> </div>
+<div class="panel-heading"> Créer un nouveau dossier dans la Division  <strong>{{ $nom_projet }}</strong> </div>
 
 <div class="panel_view_details">
    
@@ -122,7 +122,7 @@ label:last-child input[type=radio] {
             @csrf
       <div class="row">
          
-         <div class="col-md-6 panel_create_dossier ">
+         <div class="col-md-8 panel_create_dossier ">
             <div class="row panel_add">
 
               <div class="col-md-12">

@@ -426,6 +426,10 @@
 
           
           <script src="{{asset('assets/js/datatables.min.js')}}"></script>
+          <script type="text/javascript">
+           var data1 = {!! json_encode($all_historiques) !!}
+      
+        </script>
            <script src="{{asset('assets/js/historique.js')}}"></script>
 
 

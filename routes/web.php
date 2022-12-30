@@ -42,6 +42,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+Route::get('/test', [App\Http\Controllers\HomeController::class, 'test'])->name('test');
+
+
 Route::get('/user_profile', [App\Http\Controllers\UserController::class, 'index'])->name('user_profile');
 
 Route::post('/user_profile_update', [App\Http\Controllers\UserController::class, 'update'])->name('user_profile_update');
@@ -98,7 +101,7 @@ Route::post('/remove_champs_attributs',[App\Http\Controllers\OrganigrammeControl
 /****Dossier */
 
 
-Route::get('/test',[App\Http\Controllers\DossierController::class, 'test']);
+
 
 Route::get('/select_project/{id}',[App\Http\Controllers\DossierController::class, 'select_project'])->name('select_project');
 

@@ -424,6 +424,33 @@ footer.mt-auto.block_footer {
   border-radius: 0px 0px 4px 4px;
   margin: 0 auto;
 
+
+}
+
+.btn_role_bottom button {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.btn_select {
+  border: none;
+  padding: 5px 10px;
+  background-color: #155ea4;
+  color: #fff;
+}
+
+.badge_role {
+  margin-right: 25px;
+}
+
+li.badge_role {
+  position: absolute;
+  top: 101px;
+  right: 164px;
+}
+
+.col-md-8.panel_create_dossier button {
+  width: 100%;
 }
 
 .header_view {
@@ -455,6 +482,11 @@ span.title_profil {
 a.link_organigramme {
   color: white;
   text-decoration: none;
+}
+
+.panel_create_dossier button {
+  font-size: 14px;
+  display: block;
 }
 
 

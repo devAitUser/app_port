@@ -17,6 +17,9 @@ use Illuminate\Routing\UrlGenerator;
 
 use Spatie\PdfToText\Pdf;
 
+use Illuminate\Support\Facades\View;
+
+
 
 
 
@@ -32,10 +35,27 @@ class HomeController extends Controller
      */
     protected $url;
 
+    public $test ;
+    protected $site_settings;
+
     public function __construct(UrlGenerator $url)
     {
         $this->middleware('auth');
         $this->url = $url;
+        $this->site_settings = Auth::id();
+        View::share('site_settings',Auth::id());
+    }
+
+
+    public function test(){
+
+        $user = Auth::user();
+
+        $this->test =  $user  ;
+        echo $user;
+
+       
+
     }
 
 

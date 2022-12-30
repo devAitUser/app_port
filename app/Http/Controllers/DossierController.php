@@ -372,9 +372,9 @@ class DossierController extends Controller
             }
         }
 
-        if ($request->file != null) {
-            for ($i = 0; $i < count($request->file); $i++) {
-                if ($request->file[$i] != null) {
+      
+            for ($i = 0; $i < count($request->nom_champ_file); $i++) {
+                if ($request->nom_champ_file[$i] != null) {
                     $attributs_dossier1 = new Attributs_dossier();
                     $attributs_dossier1->nom_champs =
                         $request->nom_champ_file[$i];
@@ -393,7 +393,7 @@ class DossierController extends Controller
                     }
                 }
             }
-        }
+    
         Session::flash('show_dossier','content');
 
         return redirect("/show_dossier/" . $dossier->id);
@@ -655,15 +655,19 @@ class DossierController extends Controller
                 $check = 1;
                 $all_dossier = Attributs_dossier::where([
                     "dossier_id" => $dossiers[$i]->id,
-                ])->get();
+                ])->orderBy('created_at', 'ASC')->get();
     
                 $createdAt = Carbon::parse($dossiers[$i]->created_at);
     
                 $date = $createdAt->format("d/m/Y H:i:s");
+
+                
     
                 $user = User::find($dossiers[$i]->user_id);
-                for ($j = 0; $j < count($all_dossier); $j++) {
-                    if ($all_dossier[$j]->type_champs == "text") {
+                
+                for ($j = 0 ; $j < count($all_dossier) ; $j++) {
+                   
+                    if ($all_dossier[$j]->nom_champs == "Objet"  || $all_dossier[$j]->type_champs == "select" ) {
                         if ($check == $count_check_item_next) {
                             $titre .= " / ";
                             $check++;
@@ -951,6 +955,8 @@ class DossierController extends Controller
 
                                 $date = $createdAt->format("d/m/Y H:i:s");
 
+                                
+
                                 $user = User::find($dossiers_s->user_id);
                                 for ($e = 0; $e < count($all_dossier); $e++) {
                                     if ($all_dossier[$e]->type_champs == "text") {
@@ -987,7 +993,7 @@ class DossierController extends Controller
 
                         $all_dossier = Attributs_dossier::where([
                             "dossier_id" => $dossiers_s->id,
-                        ])->get();
+                        ])->orderBy('id', 'DESC')->get();
 
                         $createdAt = Carbon::parse($dossiers_s->created_at);
 
@@ -995,9 +1001,9 @@ class DossierController extends Controller
 
                         $user = User::find($dossiers_s->user_id);
                         for ($e = 0; $e < count($all_dossier); $e++) {
-                            if ($all_dossier[$e]->type_champs == "text") {
+                            if ($all_dossier[$e]->nom_champs == "Objet"  || $all_dossier[$e]->type_champs == "select" ) {
                                 if ($check == $count_check_item_next) {
-                                    $titre .= " / ";
+                                    $titre .= " /  ";
                                     $check++;
                                 }
                                 $titre .= $all_dossier[$e]->valeur;

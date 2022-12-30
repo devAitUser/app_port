@@ -63,16 +63,16 @@
         <div class="col-md-8">
             <div class="card-body">
                 <form method="POST" action="{{url('/roles_store')}}">
-                    @csrf                    <div class="row mb-3">
-                    <label for="name" class="col-md-4 col-form-label text-md-end">name</label>
+                    @csrf                    <div class="row mb-3 pt-5">
+                    <label for="name" class="col-md-4 col-form-label text-md-end">Nom </label>
                     <div class="col-md-6">
                         <input id="name" type="text" class="form-control " name="name" value="" required="" autocomplete="name" autofocus="">
                                             </div>
                     </div>
                     <div class="row mb-3">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
 
-                            <div class="row mb-3">
+                            <div class="row mb-3 pt-3">
                             <label for="permission" class="col-md-4 col-form-label text-md-end">Les Permissions</label>
                                 <div class="col-md-6">
 
@@ -93,7 +93,7 @@
                 </div>
                 <div class="container" style="">
              
-                <div class="col-md-12  ">
+                <div class="col-md-12 pb-5  ">
 
 
 

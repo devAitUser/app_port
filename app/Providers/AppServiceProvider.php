@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;  
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use App\Models\Organigramme;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -47,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('Voir_plan_classement', function ()
         {
             $value = false;
-             if (Auth::user()->hasPermissionTo('Voir le plan de classement'))
+             if (Auth::user()->hasPermissionTo('Visualiser le plan de classement'))
             {
               $value = true;
             }
@@ -56,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('permission_creer_dossier', function ()
         {
             $value = false;
-             if (Auth::user()->hasPermissionTo('Créer les dossiers'))
+             if (Auth::user()->hasPermissionTo('Créer un dossier'))
             {
               $value = true;
             }
@@ -81,6 +83,26 @@ class AppServiceProvider extends ServiceProvider
             }
             return $value;
         });
+
+      
+
+        View::composer('layouts.app', function ($view) {
+          $user = Auth::user();
+          $projet_select_id = $user->projet_select_id;
+          $nom_projet = "";
+
+            if($projet_select_id != NULL) {
+          
+            $organigramme = Organigramme::find($projet_select_id);
+            
+            $dossiers = $organigramme->dossiers;
+            $nom_projet = $organigramme->nom;
+            
+            }
+            $view->with('role_name', $nom_projet );
+         });
+       
+        
     }
 
     

@@ -98,53 +98,40 @@
 
 
 
-    $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-        }
-      });
+      $('#organigramme_table').dataTable( {
+        "aaData": data1,
+        "bInfo" : false,
+        searching: false,
+        "lengthChange": false,
+        columnDefs: [
+            {
+                targets: -1,
+                data: null,
+                defaultContent: '<button>Click!</button>',
+            },
+        ],
+        
+        "paginate": {
+            "first": "PremiÃ¨re",
+            "last": "DerniÃ¨re",
+            "next": "Suivante",
+            "previous": "PrÃ©cÃ©dente"
+        },
+        "oLanguage": {
+          "sUrl": APP_URL+"/assets/fr-FR.json"
+        },
+        "columns": [
+         
+            { "data": "user"  },
+            { "data": "action"  },
+            { "data": "date"  }
 
-    $.ajax({
-        'url': APP_URL+"/api_historique_dossier",
-        'method': "GET",
-        'contentType': 'application/json'
-    }).done( function(data) {
-        $('#organigramme_table').dataTable( {
-            "aaData": data,
-            "bInfo" : false,
-            searching: false,
-            "lengthChange": false,
-            columnDefs: [
-                {
-                    targets: -1,
-                    data: null,
-                    defaultContent: '<button>Click!</button>',
-                },
-            ],
-            
-            "paginate": {
-                "first": "PremiÃ¨re",
-                "last": "DerniÃ¨re",
-                "next": "Suivante",
-                "previous": "PrÃ©cÃ©dente"
-            },
-            "oLanguage": {
-              "sUrl": APP_URL+"/assets/fr-FR.json"
-            },
-            "columns": [
              
-                { "data": "user"  },
-                { "data": "action"  },
-                { "data": "date"  }
-
-                 
-                ]
-
-		
+            ]
 
 
-        })
-   
+
+
     })
 
 }

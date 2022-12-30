@@ -295,9 +295,7 @@ class OrganigrammeController extends Controller
         foreach ($all_entite as $entite)
         {
 
-            if (Dossier_champ::where('entite_id', '=', $entite->id)
-                ->count() > 0)
-            {
+            $all_dossier = Dossier_champ::query()->where(['organigramme_id' => $organigramme_id, 'entite_id' => $entite->id ])->get();
 
                 foreach ($all_dossier as $row)
                 {
@@ -309,7 +307,7 @@ class OrganigrammeController extends Controller
                     'name_entite' => $entite->nom,
                     'dossiers' => $data
                 );
-            }
+            
 
         }
 
