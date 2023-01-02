@@ -88,6 +88,10 @@
 
       }
 
+      button.form-control.btn_add_entitre {
+      margin: 0 auto;
+      }
+
       #organigramme_table .odd {
             background-color: #edf0f3cf;
          }
@@ -300,6 +304,7 @@
                <th > Titre </th>
                <th > Utilisateur 	</th>
                <th >Voir</th>
+               <th > Pièces</th>
 
 
 
@@ -317,6 +322,27 @@
 
       
    </tbody>
+
+
+   <!-- Modal -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+           
+            <h4 class="modal-title" id="myModalLabel">   Les coordonnés du Dossier </h4>
+         </div>
+         <div class="modal-body">
+            <div class="insertHere"></div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+
+           
+         </div>
+      </div>
+      </div>
+   </div>
 
 
    

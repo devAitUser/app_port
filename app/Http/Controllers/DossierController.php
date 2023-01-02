@@ -861,6 +861,8 @@ class DossierController extends Controller
 
         $all_dossiers = [];
 
+        
+
         if (isset($request->nom_champ)) {
             for ($o = 0; $o < count($request->nom_champ); $o++) {
                 if ($word == "") {
@@ -991,6 +993,14 @@ class DossierController extends Controller
                         $count_check_item_next = 0;
                         $check = 1;
 
+                        $count_check_fichier_item_next = 0;
+                        $check_fichier = 1;
+
+                        $count_check_f_item_next = 0;
+                        $check_f = 1;
+
+                        $titre_fichier = "";
+
                         $all_dossier = Attributs_dossier::where([
                             "dossier_id" => $dossiers_s->id,
                         ])->orderBy('id', 'DESC')->get();
@@ -1009,6 +1019,40 @@ class DossierController extends Controller
                                 $titre .= $all_dossier[$e]->valeur;
                                 $count_check_item_next++;
                             }
+                            if ($all_dossier[$e]->type_champs == "Fichier" ) {
+
+                                
+
+
+                                if ($check_fichier == $count_check_fichier_item_next) {
+                                 
+                                    $check_fichier++;
+                                }
+                             
+                                $File_champ = File_champ::where([
+                                    "champs_id" => $all_dossier[$e]->id,
+                                ])->get();
+
+                                if(!$File_champ->isEmpty()){
+
+                                    for ($j = 0; $j < count($File_champ); $j++) {
+
+
+                                        if ($check_f == $count_check_f_item_next) {
+                                            $titre_fichier .= " / ";
+                                            $check_f++;
+                                        }
+
+
+                                        $titre_fichier .= $File_champ[$j]->file;
+                                        $count_check_f_item_next++;
+
+                                    }
+
+                                }
+
+                                $count_check_fichier_item_next++;
+                            }
                         }
                         $count_dossier++;
 
@@ -1016,6 +1060,7 @@ class DossierController extends Controller
                             "id" => $dossiers[$i]->id,
                             "date" => $date,
                             "titre" => $titre,
+                            "titre_fichier" => $titre_fichier,
                             "user" => $user->identifiant,
                         ];
                         $titre = "";
@@ -1028,56 +1073,7 @@ class DossierController extends Controller
                     
                 }
 
-                // $attributs_dossiers = Attributs_dossier::query()
-                // ->where([
-                //     "dossier_id" => $dossiers[$i]->id,
-                //     "nom_champs" => $nom_champ,
-                // ])
-                // ->get();
-
-            // for ($j = 0; $j < count($attributs_dossiers); $j++) {
-            //     $found = like($attributs_dossiers[$j]->valeur, $word);
-            //     if ($found) {
-            //         $array_search[] = $attributs_dossiers[$j];
-
-            //         $dossiers_s = dossier::find(
-            //             $attributs_dossiers[$j]->dossier_id
-            //         );
-
-            //         $count_check_item_next = 0;
-            //         $check = 1;
-
-            //         $all_dossier = Attributs_dossier::where([
-            //             "dossier_id" => $dossiers_s->id,
-            //         ])->get();
-
-            //         $createdAt = Carbon::parse($dossiers_s->created_at);
-
-            //         $date = $createdAt->format("d/m/Y H:i:s");
-
-            //         $user = User::find($dossiers_s->user_id);
-            //         for ($e = 0; $e < count($all_dossier); $e++) {
-            //             if ($all_dossier[$e]->type_champs == "text") {
-            //                 if ($check == $count_check_item_next) {
-            //                     $titre .= " / ";
-            //                     $check++;
-            //                 }
-            //                 $titre .= $all_dossier[$e]->valeur;
-            //                 $count_check_item_next++;
-            //             }
-            //         }
-            //         $count_dossier++;
-
-            //         $all_dossiers[] = [
-            //             "id" => $dossiers[$i]->id,
-            //             "date" => $date,
-            //             "titre" => $titre,
-            //             "user" => $user->identifiant,
-            //         ];
-            //         $titre = "";
-            //     } else {
-            //     }
-            // }
+               
         }
 
         $data = [
