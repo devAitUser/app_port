@@ -303,8 +303,9 @@
                <th > Date de création  </th>
                <th > Titre </th>
                <th > Utilisateur 	</th>
+               <th > Détails</th>
                <th >Voir</th>
-               <th > Pièces</th>
+               
 
 
 
@@ -330,7 +331,7 @@
       <div class="modal-content">
          <div class="modal-header">
            
-            <h4 class="modal-title" id="myModalLabel">   Les coordonnés du Dossier </h4>
+            <h4 class="modal-title" id="myModalLabel">   Les détails du dossier </h4>
          </div>
          <div class="modal-body">
             <div class="insertHere"></div>

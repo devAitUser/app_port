@@ -86,23 +86,26 @@ $(document).ready(function() {
               "next": "Suivante",
               "previous": "PrÃ©cÃ©dente"
           },
-          "oLanguage": {
-              "sUrl": "/assets/fr-FR.json"
-          },
+          
+              "oLanguage": {
+                  "sUrl": APP_URL+"/assets/fr-FR.json"
+              },
             "columns": [
               
               { "data": "id"  },
               { "data": "date"  },
               { "data": "titre"  },
               { "data": "titre_fichier"  },
+
+              { "data": "id"  , render: function(data, type, row) {
+                return '<button class="btn btn-secondary"  type="button"  data-toggle="modal" data-target="#panel_entite"  >'+btn_add+'</button>' } 
+            }  , 
            
               { "data": "id"  , render: function(data, type, row) {
                             return '<button class="btn btn-warning" style="padding: 3px 5px;" type="button"  onclick="click_show(event,' + data + ' )"  >'+button_show+'</button>' } 
                         },
 
-              { "data": "id"  , render: function(data, type, row) {
-                          return '<button class="btn btn-secondary"  type="button"  data-toggle="modal" data-target="#panel_entite"  >'+btn_add+'</button>' } 
-                      }      
+               
             
 
             
@@ -290,7 +293,7 @@ $(document).ready(function() {
                      "previous": "PrÃ©cÃ©dente"
                  },
                  "oLanguage": {
-                     "sUrl": "/assets/fr-FR.json"
+                     "sUrl": APP_URL+"/assets/fr-FR.json"
                  },
                    "columns": [
                      

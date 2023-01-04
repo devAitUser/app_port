@@ -2,8 +2,8 @@
    
           e.preventDefault();
 
-
-             var decision = "rejeter"
+          if(confirm('Êtes-vous sûr?')) {
+            var decision = "rejeter"
 
 
             $.ajax({
@@ -25,6 +25,8 @@
 
               }
             })
+           }
+             
 
 
 
@@ -32,11 +34,25 @@
         }
 
 
+        function click_show(e,row) {
+             
+          e.preventDefault();
+          var id =row
+      
+          var url =APP_URL+'/url_dossier/' + row ;
+      
+          window.open(url,'_blank');
+      
+      
+      
+      
+      } 
+
 
   function accepeter_demande(e,dossier_id,id_request ) {
              
     e.preventDefault();
-
+    if(confirm('Êtes-vous sûr?')) {
 
              var decision = "accepter"
 
@@ -73,7 +89,7 @@
             })
 
 
-
+          }
 
 
 
@@ -94,6 +110,11 @@
     
 
       button_show  += '</svg>';
+
+
+      var button_show1   = '  <svg width="26px" height="26px" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title>folder--details</title><rect x="16" y="20" width="14" height="2"/><rect x="16" y="24" width="14" height="2"/><rect x="16" y="28" width="7" height="2"/><path d="M14,26H4V6h7.17l3.42,3.41.58.59H28v8h2V10a2,2,0,0,0-2-2H16L12.59,4.59A2,2,0,0,0,11.17,4H4A2,2,0,0,0,2,6V26a2,2,0,0,0,2,2H14Z"/><rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/></svg>';
+
+
 
 
 
@@ -135,6 +156,9 @@
                 { "data": "name_user"  },
                 { "data": "motif"  },
                 { "data": "date"  },
+                { "data": "dossier_id"  , render: function(data, type, row) {
+                  return '<button class="btn btn-warning" style="padding: 3px 5px;" type="button"  onclick="click_show(event,' + data + ' )"  >'+button_show1+'</button>' } 
+                },
                 { "data": "dossier_id"  , render: function(data, type, full, meta) {
                     return '<button type="button" class="btn btn-danger mr-3 " onclick="demande_rejeter(event , ' + full['dossier_id'] + ' , ' + full['id'] + ' )"  >'+button_show+'</button><button type="button" class="btn btn-primary"   onclick="accepeter_demande(event,' + full['dossier_id'] + ' , ' + full['id'] + ' )" >'+button_delete+'</button>' } 
                 }

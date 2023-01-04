@@ -108,7 +108,7 @@
                             <div class="col-md-6">
 
 
-                                    <select class="custom-select" id="role" name="role">
+                                    <select class="custom-select form-select" id="role" name="role">
 
                                         @foreach ($roles as $role)
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>

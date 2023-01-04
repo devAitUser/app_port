@@ -352,6 +352,7 @@ function add_row_select(row) {
 
                         row_select1 += '<input type="d-none" class="d-none" id="file_'+this.id+'" name="file_text[]" value="" >';
                         row_select1 += '<input id="Objet_file'+this.id+'" type="text" class="form-control"  name="text_objet[]" value="" >';
+                        row_select1 += '<input  type="date" class="form-control"  name="date_file[]" value="" >';
                         row_select1 += '</div></div>';
                         row_select1 += '</div>';
 
@@ -395,7 +396,7 @@ function add_row_select(row) {
                     row_select1 += '<input type="text" name="nom_champ[]"  value="'+nom_champs+' " class="d-none"> ';
                     row_select1 += '<input type="text" name="id_champs[]"  value="" class="d-none"> ';
                     row_select1 += '<input type="text" name="type_champ[]" value="text" class="d-none"> <div class="col-sm-6">';
-                    row_select1 += ' <input class="form-control" type="text" name="valeur[]" required>';
+                    row_select1 += ' <input class="form-control" type="text" name="valeur[]" >';
                 
                   
                     row_select1 += '</div></div>';

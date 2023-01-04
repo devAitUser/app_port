@@ -65,7 +65,7 @@
                        <th scope="col">Nom d'utilisateur</th>
                        <th scope="col">Motif</th>
                        <th scope="col">Date</th>
-                  
+                       <th scope="col">Voir</th>
                        <th scope="col">Action  </th>
 
 

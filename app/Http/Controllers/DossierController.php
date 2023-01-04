@@ -389,6 +389,7 @@ class DossierController extends Controller
                         $file_champ->champs_id =$attributs_dossier1->id;
                         $file_champ->name_file =  $request->file("file")[$i]->store("files");
                         $file_champ->file = $request->text_objet[$i];
+                        $file_champ->date = $request->date_file[$i];
                         $file_champ->save();
                     }
                 }
@@ -1039,12 +1040,12 @@ class DossierController extends Controller
 
 
                                         if ($check_f == $count_check_f_item_next) {
-                                            $titre_fichier .= " / ";
+                                            $titre_fichier .= " <br> ";
                                             $check_f++;
                                         }
 
 
-                                        $titre_fichier .= $File_champ[$j]->file;
+                                        $titre_fichier .= '<span class="badge badge-secondary">'.$File_champ[$j]->file.' / '.$File_champ[$j]->date.'</span>';
                                         $count_check_f_item_next++;
 
                                     }
@@ -1217,6 +1218,7 @@ class DossierController extends Controller
         $file_champ->champs_id = $request->id_champs_f;
         $file_champ->name_file = $request->file("file")->store("files");
         $file_champ->file = $request->Objet;
+        $file_champ->date = $request->date;
         $file_champ->save();
 
         return redirect("/show_dossier/" . $request->id_dossier);

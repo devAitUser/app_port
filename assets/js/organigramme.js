@@ -730,28 +730,31 @@ $(document).ready(function() {
       $('.btn_delete_entite').on('click', function(event){
         event.preventDefault();
 
-        var id_entite =  $('#select_entite').val();
+        if(confirm('Êtes-vous sûr?')) {
 
-        $.ajax({
-          url:APP_URL+"/remove_entite",
-          method:"POST",
-          data:{
-            'id_entite' : id_entite,
-          },
-          success:function(data){
+          var id_entite =  $('#select_entite').val();
 
-            if(data.etat){
+          $.ajax({
+            url:APP_URL+"/remove_entite",
+            method:"POST",
+            data:{
+              'id_entite' : id_entite,
+            },
+            success:function(data){
+
+              if(data.etat){
 
 
-              $('#select_entite').find('option:selected').remove();
+                $('#select_entite').find('option:selected').remove();
 
 
-                alert('supprimer avec Succès')
+                  alert('supprimer avec Succès')
 
+              }
+      
             }
-    
-          }
-         })
+          })
+        }
 
       });
 
@@ -986,6 +989,9 @@ function removeRow(e,row,entite,organigramme_id) {
 
              e.preventDefault();
 
+
+             if(confirm('Êtes-vous sûr?')) {
+
   
               array_id =[];
 
@@ -1029,7 +1035,7 @@ function removeRow(e,row,entite,organigramme_id) {
                     //fill_treeview()
                     alert('supprimer avec succes');
                   
-
+               }
 
 
 

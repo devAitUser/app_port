@@ -5,7 +5,7 @@ function remove_organigramme(e,row) {
 
        
   
-
+                if(confirm('Êtes-vous sûr?')) {
   
                   $.ajax({
                     url:APP_URL+"/delete_organigramme",
@@ -38,6 +38,8 @@ function remove_organigramme(e,row) {
               
                     }
                    })
+
+                  }
   
   
   

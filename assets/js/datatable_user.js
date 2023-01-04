@@ -5,44 +5,44 @@
 
 
 
+          if(confirm('Êtes-vous sûr?')) {
 
+                $.ajax({
+                  url:APP_URL+"/user_destroy/"+row,
+                  method:"POST",
+                  data:{
+                    items_delete : row
+                  },
+                  success:function(data){
 
-            $.ajax({
-              url:APP_URL+"/user_destroy/"+row,
-              method:"POST",
-              data:{
-                items_delete : row
-              },
-              success:function(data){
-
-                
-
-                  console.log(data.data)
-
-                if(data.etat){
-
-                  
-
-                      $('#organigramme_table').DataTable().destroy();
-                      fill_table()
-                      
-
-                
-                                          
-                  
-                      alert('supprimer avec succes');
                     
 
-                }
-            
+                      console.log(data.data)
 
-              }
-            })
+                    if(data.etat){
+
+                      
+
+                          $('#organigramme_table').DataTable().destroy();
+                          fill_table()
+                          
+
+                    
+                                              
+                      
+                          alert('supprimer avec succes');
+                        
+
+                    }
+                
+
+                  }
+                })
 
 
+          }
 
-
-        }
+          }
 
 
 
