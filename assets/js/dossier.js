@@ -343,6 +343,7 @@ function add_row_select(row) {
                         $("#attribut_champ").append(row_select1);
                     }
                     if (this.type_champs == "Fichier") {
+                        
                         row_select1 = '<div id="" class="col-md-12">';
                         row_select1 += '<div class="form-group row">';
                         row_select1 += ' <label for="colFormLabelSm" class=" text-uppercase col-sm-6 col-form-label col-form-label-sm">' + this.nom_champs + ' :</label>';
@@ -352,12 +353,14 @@ function add_row_select(row) {
 
                         row_select1 += '<input type="d-none" class="d-none" id="file_'+this.id+'" name="file_text[]" value="" >';
                         row_select1 += '<input id="Objet_file'+this.id+'" type="text" class="form-control"  name="text_objet[]" value="" >';
-                        row_select1 += '<input  type="date" class="form-control"  name="date_file[]" value="" >';
+                        row_select1 += '<input id="date_file'+this.id+'"  type="date" class="form-control"  name="date_file[]" value="" >';
                         row_select1 += '</div></div>';
                         row_select1 += '</div>';
 
                         $("#attribut_file").append(row_select1);
                         $("#attribut_file").addClass("attribut_file");
+                        document.getElementById("date_file"+this.id).valueAsDate = new Date();
+
                     }
 
 

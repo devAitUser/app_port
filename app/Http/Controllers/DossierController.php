@@ -1221,6 +1221,8 @@ class DossierController extends Controller
         $file_champ->date = $request->date;
         $file_champ->save();
 
+        Session::flash('file_add','content');
+
         return redirect("/show_dossier/" . $request->id_dossier);
     }
     public function delete_file(Request $request)

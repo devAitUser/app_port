@@ -3,6 +3,7 @@
    <head>
       <meta charset="utf-8">
       <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+      <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon-32x32.png') }}"/>
       <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
          rel="stylesheet">
       <!-- CSRF Token -->

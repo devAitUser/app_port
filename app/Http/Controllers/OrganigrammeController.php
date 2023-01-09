@@ -21,9 +21,26 @@ class OrganigrammeController extends Controller
 
     public function home_organigramme()
     {
-        $this->authorize('permission_plan_classements');
+        
+        $view=false;
 
-        return view('organigramme.home');
+        $edit=false;
+
+        if (Auth::user()->hasPermissionTo('Modifier le plan de classement'))
+        {
+            $edit=true;
+        }
+
+        if (Auth::user()->hasPermissionTo('Visualiser le plan de classement'))
+        {
+            $view=true;
+            
+        }
+        $data = array(
+            "edit" => $edit,
+            "view" => $view,
+        );
+        return view('organigramme.home',$data);
 
     }
 

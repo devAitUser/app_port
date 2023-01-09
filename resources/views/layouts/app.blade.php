@@ -3,7 +3,10 @@
    <head>
       <meta charset="utf-8">
       <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-      <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+      <link rel="icon" href="{{ asset('assets/css/style.css') }}">
+      <link rel="stylesheet" href="{{ asset('assets/img/favicon-32x32.png') }}">
+      <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon-32x32.png') }}"/>
+
       <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
          rel="stylesheet">
          <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +30,7 @@
          <script src="{{ asset('assets/js/home_app.js') }}"></script>
       <!-- CSRF Token -->
       <meta name="csrf-token" content="{{ csrf_token() }}">
-      <title>{{ config('app.name', 'Laravel') }}</title>
+      <title>{{ config('app.name', 'GESTION DES DOCUMENTS ANP') }}</title>
 
       <script type="text/javascript">
       var APP_URL = {!! json_encode(url('/')) !!}
@@ -115,13 +118,29 @@
                         </li>
                      @endif
 
+                     <style>
+                        .link-dropdown:hover .dropdown {
+                           opacity: 1;
+                           visibility: visible;
+                           -webkit-transform: translateY(-10px);
+                           -ms-transform: translateY(-10px);
+                           transform: translateY(-10px);
+                           }
+                     </style>
+
 
                   
            
-                     <li class="Mnuli lish  {{ request()->is('user_profile')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Mon Profil">
-                        <a href="{{route('user_profile')}}">
+                     <li class="Mnuli lish link_dropdown  {{ request()->is('user_profile')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Mon Profil">
+                        <a href="{{route('user_profile')}}" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="material-icons">manage_accounts</span>
                         </a>
+
+                        <ul class="dropdown-menu dropdown" aria-labelledby="dropdownMenuButton1" style="">
+                           <li><a class="dropdown-item" href="qui_somme_nous.php">Utilisateur : <strong>{{$name_user}}</strong>  </a></li>
+                           <li><a class="dropdown-item" href="{{route('user_profile')}}">Mon Profil</a></li>
+                          
+                        </ul>
                      </li>
 
 
@@ -147,7 +166,7 @@
                      @endif
                 
                    
-                     @if (Auth::user()->hasPermissionTo('Modifier le plan de classement')) 
+                     @if (Auth::user()->hasPermissionTo('Modifier le plan de classement') || Auth::user()->hasPermissionTo('Visualiser le plan de classement')  ) 
                      <li class="Mnuli lish {{ request()->is('organigramme')  ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Plan de classement">
                         <a href="{{route('home_organigramme')}}">
                            <span class="material-icons  ">
@@ -194,7 +213,7 @@
                </div>
             </div>
             <div class="panel_view">
-               <img src="{{ asset('img_app/text830.png') }}" class="logo_menu">
+               <img src="{{ asset('img_app/banner.png') }}" class="logo_menu">
             </div>
             <div class="panel_view_bottom">
 

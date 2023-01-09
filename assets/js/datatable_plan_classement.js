@@ -77,6 +77,10 @@ function view_organigramme(e,row) {
 
   function fill_organigramme(){
 
+   
+
+   
+
     $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -115,7 +119,14 @@ function view_organigramme(e,row) {
                 { "data": "nom"  },
           
                 { "data": "id"  , render: function(data, type, row) {
-                    return '<button type="button" class="btn btn-primary mr-3 " onclick="view_organigramme(event,' + data + ' )"  >Visualiser</button><button type="button" class="btn btn-danger mr-3 " onclick="remove_organigramme(event,' + data + ' )"  >Supprimer</button><button type="button" class="btn btn-primary"   onclick="click_edit(event,' + data + ' )" >Modifier</button>' } 
+                     btn_print = ''
+                    if(view){
+                      btn_print += '<button type="button" class="btn btn-primary mr-3 " onclick="view_organigramme(event,' + data + ' )"  >Visualiser</button>'
+                    }
+                    if(edit){
+                      btn_print += '<button type="button" class="btn btn-danger mr-3 " onclick="remove_organigramme(event,' + data + ' )"  >Supprimer</button><button type="button" class="btn btn-primary"   onclick="click_edit(event,' + data + ' )" >Modifier</button>'
+                    }
+                    return btn_print } 
                 }
 
                  

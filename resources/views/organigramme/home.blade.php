@@ -44,6 +44,12 @@
     }
 </style>
 
+<script type="text/javascript">
+  var edit = {!! json_encode($edit) !!}
+  var view = {!! json_encode($view) !!}
+
+ </script>
+
     
       <div class="panel-heading">  Les plans de classements  </div>
       <div class="panel_view_details">

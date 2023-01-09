@@ -100,6 +100,7 @@ class AppServiceProvider extends ServiceProvider
             
             }
             $view->with('role_name', $nom_projet );
+            $view->with('name_user', $user->identifiant );
          });
        
         
