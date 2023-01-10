@@ -48,7 +48,7 @@ ul.hdMnu {
 }
 
 
-.Mnuli {
+.icon_menu {
   float: left;
   line-height: 27px;
   margin-right: 10px;
@@ -96,7 +96,7 @@ img.logo_css {
  
 }
 
-.Mnuli a {
+.icon_menu a {
   color: #155ea4 !important;
   top: 2px;
     position: relative;
@@ -107,18 +107,18 @@ img.logo_css {
   padding-top: 18px;
 }
 
-.Mnuli {
+.icon_menu {
   padding: 10px 15px!important;
 
   border-radius: 4px;
 }
 
-li.Mnuli.lish.active {
+li.icon_menu.active {
   background-color: #155ea4;
   color: #fff !important;
 }
 
-li.Mnuli.lish.active a {
+li.icon_menu.active > a {
   color: #fff !important;
 }
 

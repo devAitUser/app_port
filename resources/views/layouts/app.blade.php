@@ -99,7 +99,7 @@
               
                   <ul class="hdMnu">
                      <li class="badge_role"> <h6>  <span class="badge bg-danger"> Division : {{$role_name}} </span></h6></li>
-                     <li class="Mnuli lish  {{ request()->is('home')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Accueil">
+                     <li class="icon_menu   {{ request()->is('home')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Accueil">
                         <a href="{{route('home')}}">
                         <span class="material-icons">
                         home
@@ -111,7 +111,7 @@
 
                    
                      @if (Auth::user()->hasPermissionTo('Gestion des prets')) 
-                        <li class="Mnuli lish  {{ request()->is('prets')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des prets">
+                        <li class="icon_menu   {{ request()->is('prets')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des prets">
                            <a href="{{route('prets')}}">
                            <span class="material-icons">file_open</span>
                            </a>
@@ -131,20 +131,20 @@
 
                   
            
-                     <li class="Mnuli lish link_dropdown  {{ request()->is('user_profile')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Mon Profil">
+                     <li class="icon_menu  link_dropdown  {{ request()->is('user_profile')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Mon Profil">
                         <a href="{{route('user_profile')}}" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="material-icons">manage_accounts</span>
                         </a>
 
                         <ul class="dropdown-menu dropdown" aria-labelledby="dropdownMenuButton1" style="">
-                           <li><a class="dropdown-item" href="qui_somme_nous.php">Utilisateur : <strong>{{$name_user}}</strong>  </a></li>
+                           <li><a class="dropdown-item" href="#">Utilisateur : <strong>{{$name_user}}</strong>  </a></li>
                            <li><a class="dropdown-item" href="{{route('user_profile')}}">Mon Profil</a></li>
                           
                         </ul>
                      </li>
 
 
-                     <li class="Mnuli lish  {{ request()->is('request_delete_dossier')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="les demandes de suppression ">
+                     <li class="icon_menu   {{ request()->is('request_delete_dossier')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="les demandes de suppression ">
                         <a href="{{route('request_delete_dossier')}}">
                         <span class="material-icons">rule_folder</span>
                         </a>
@@ -153,7 +153,7 @@
                  
    
                      @if (Auth::user()->hasRole('admin')) 
-                     <li class="Mnuli lish  {{ request()->is('user_list')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des utilisateurs">
+                     <li class="icon_menu   {{ request()->is('user_list')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des utilisateurs">
                         <span class="material-icons">
                         <a href="{{route('user_list') }}">
                            
@@ -167,7 +167,7 @@
                 
                    
                      @if (Auth::user()->hasPermissionTo('Modifier le plan de classement') || Auth::user()->hasPermissionTo('Visualiser le plan de classement')  ) 
-                     <li class="Mnuli lish {{ request()->is('organigramme')  ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Plan de classement">
+                     <li class="icon_menu  {{ request()->is('organigramme')  ? 'active' : '' }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Plan de classement">
                         <a href="{{route('home_organigramme')}}">
                            <span class="material-icons  ">
                            account_tree
@@ -184,7 +184,7 @@
 
 
                      @if (Auth::user()->hasRole('admin')) 
-                     <li class="Mnuli lish {{ request()->is('roles')  ? 'active' : '' }}  "  data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des roles">
+                     <li class="icon_menu  {{ request()->is('roles')  ? 'active' : '' }}  "  data-bs-toggle="tooltip" data-bs-placement="top" title="Gestion des roles">
                      <a href="{{route('roles.index') }}">
                         <span class="material-icons">
                         rule
@@ -192,7 +192,7 @@
                      </li>
                      @endif
 
-                     <li class="Mnuli lish" data-bs-toggle="tooltip" data-bs-placement="top" title="Quitter">
+                     <li class="icon_menu " data-bs-toggle="tooltip" data-bs-placement="top" title="Quitter">
                         
                         <a href="{{route('logout') }}" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
