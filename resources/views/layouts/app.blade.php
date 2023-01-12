@@ -143,12 +143,13 @@
                         </ul>
                      </li>
 
-
+                     @if (Auth::user()->hasPermissionTo('Valider la suppression')) 
                      <li class="icon_menu   {{ request()->is('request_delete_dossier')  ? 'active' : '' }} " data-bs-toggle="tooltip" data-bs-placement="top" title="les demandes de suppression ">
                         <a href="{{route('request_delete_dossier')}}">
                         <span class="material-icons">rule_folder</span>
                         </a>
                      </li>
+                     @endif
                 
                  
    

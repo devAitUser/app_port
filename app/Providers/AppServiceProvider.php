@@ -83,6 +83,15 @@ class AppServiceProvider extends ServiceProvider
             }
             return $value;
         });
+        Gate::define('Valider_suppression', function ()
+        {
+            $value = false;
+             if (Auth::user()->hasPermissionTo('Valider la suppression'))
+            {
+              $value = true;
+            }
+            return $value;
+        });
 
       
 
