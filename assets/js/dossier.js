@@ -47,6 +47,11 @@ function remove_file(event, id_file) {
     })
 }
 
+function add_file() {
+    document.getElementById("date_input_file").valueAsDate = new Date();
+
+}
+
 
 function fonction_checkbox(){
     if (document.getElementById('version_physique_btn').checked) 
@@ -488,6 +493,10 @@ function fill_entite() {
 $(document).ready(function() {
 
 
+
+   
+
+
     $(".btn_project").click(function(){
         $(".btn_project").removeClass("active");
         $(this).addClass("active");
@@ -794,9 +803,7 @@ $(document).ready(function() {
 
 
 
-    $('#treeview_form').on('submit', function(event) {
-
-    });
+    
 
 
 
