@@ -257,7 +257,7 @@ function add_row_select(row) {
                     row_select += '<div class="form-group row">';
                     row_select += ' <label for="colFormLabelSm" id="" class="col-sm-6 col-form-label col-form-label-sm sous_label_' + count + ' text-uppercase" >________ :</label>';
                     row_select += ' <input class="nom_champs_select_' + count + '" type="text" name="nom_champs_select[]" value="text" hidden> <div class="col-sm-6">';
-                    row_select += ' <select class="form-select" id="sous_select_' + count + '" name="value_select[]" onchange="add_row_select(' + count + ')" >';
+                    row_select += ' <select class="form-select" id="sous_select_' + count + '" name="value_select[]" onchange="add_row_select(' + count + ')" > required';
                     row_select += '<option value="">Selectionne le dossier</option>';
                     $.each(data.dossier_champs, function() {
                         row_select += '<option value="' + this.id + '">' + this.nom_champs + '</option>';

@@ -104,7 +104,7 @@
                             <label for="permission" class="col-md-4 col-form-label text-md-end">{{ __('Les Permissions') }}</label>
 
                             <div class="col-md-6">
-                                <select class="custom-select" id="permission" name="permission">
+                                <select class="form-select" id="permission" name="permission">
 
                                     @foreach ($permissions as $permision)
                                     <option value="{{$permision->name}}">{{$permision->name}}</option>

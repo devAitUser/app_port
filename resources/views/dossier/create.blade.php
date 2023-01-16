@@ -133,7 +133,7 @@ label:last-child input[type=radio] {
                            <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm">Entité :</label>
                            <input  type="text" name="nom_entite" value="Entité " hidden="">
                            <div class="col-sm-6">
-                           <select class="form-select" id="entite_select" name="entite"  >
+                           <select class="form-select" id="entite_select" name="entite"  required>
                               <option value="">Sélectionner l'entité  </option>
                      
                               </select>
@@ -147,7 +147,7 @@ label:last-child input[type=radio] {
                            <label for="colFormLabelSm" class="col-sm-6 col-form-label col-form-label-sm">Dossiers :</label>
                            <input  type="text" name="nom_champs_select[]" value="FOND" hidden="">
                            <div class="col-sm-6">
-                           <select class="form-select" id="parent_select" name="value_select[]">
+                           <select class="form-select" id="parent_select" name="value_select[]" required>
                               <option value="">Selectionne le dossier</option>
                      
                               </select>
@@ -168,7 +168,7 @@ label:last-child input[type=radio] {
                            <label for="colFormLabelSm"  class="col-sm-6 col-form-label col-form-label-sm sous_label_1 text-uppercase">________ :</label>
                            <input class="nom_champs_select_1" type="text" name="nom_champs_select[]" value="text" hidden="">
                            <div class="col-sm-6">
-                              <select class="form-select" id="sous_select_1" name="value_select[]" onchange="add_row_select(1)">
+                              <select class="form-select" id="sous_select_1" name="value_select[]" onchange="add_row_select(1)" required>
                                  <option value="">Selectionne le dossier</option>
                         
                                  </select>
