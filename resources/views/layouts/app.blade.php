@@ -59,7 +59,7 @@
             <div class="panel_view_header">
                <div class="header_panel_view">
                   <div class="card-header">
-                     <img src="{{ asset('assets/img/anp.png') }}" class="logo_css">
+                     <img src="{{ asset('assets/img/AMSlogo.png') }}" class="logo_css">
                   </div>
 
                
@@ -214,7 +214,7 @@
                </div>
             </div>
             <div class="panel_view">
-               <img src="{{ asset('img_app/banner.png') }}" class="logo_menu">
+               <img src="{{ asset('assets/img/LOGO_MENU.png') }}" class="logo_menu">
             </div>
             <div class="panel_view_bottom">
 

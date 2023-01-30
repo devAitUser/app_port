@@ -28,7 +28,10 @@
 }
 
 
-.active a {
+.active > a{
+  color: #fff !important;
+}
+li.icon_menu.active a {
   color: #fff !important;
 }
 .panel_view_header .card-header {
@@ -101,7 +104,7 @@ img.logo_css {
 }
 
 .icon_menu a {
-  color: #155ea4 !important;
+  color: #717070 !important;
   top: 2px;
     position: relative;
 }
@@ -118,7 +121,7 @@ img.logo_css {
 }
 
 li.icon_menu.active {
-  background-color: #155ea4;
+  background-color: #787878;
   color: #fff !important;
 }
 
@@ -295,7 +298,7 @@ span.label_menu_right {
 }
 
 li.link_menu__left:hover {
-  background-color: #155ea4;
+  background-color: #717070;
   color: #fff;
 }
 
@@ -668,7 +671,7 @@ span.ititle_organigramme {
 }
 
 .styled-table thead tr {
-  background-color: #155ea4;
+  background-color: #717070;
   color: #ffffff;
 
 }
@@ -813,7 +816,7 @@ a.link_organigramme span {
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     color: #fff;
-    background-color: #155ea4;
+    background-color: #717070;
     border-color: #ddd;
     WIDTH: 84% !important;
     MARGIN: auto;

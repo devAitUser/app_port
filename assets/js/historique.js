@@ -97,12 +97,12 @@
 
 
 
-
       $('#organigramme_table').dataTable( {
         "aaData": data1,
         "bInfo" : false,
         searching: false,
         "lengthChange": false,
+        order: [[0, 'desc']],
         columnDefs: [
             {
                 targets: -1,
@@ -122,6 +122,8 @@
         },
         "columns": [
          
+
+            { "data": "id"  },
             { "data": "user"  },
             { "data": "action"  },
             { "data": "date"  }

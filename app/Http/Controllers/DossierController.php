@@ -373,27 +373,49 @@ class DossierController extends Controller
         }
 
       
-            for ($i = 0; $i < count($request->nom_champ_file); $i++) {
-                if ($request->nom_champ_file[$i] != null) {
-                    $attributs_dossier1 = new Attributs_dossier();
-                    $attributs_dossier1->nom_champs =
-                        $request->nom_champ_file[$i];
-                    $attributs_dossier1->valeur = 'Fichier';
-                    $attributs_dossier1->type_champs = "Fichier" ;
-                    $attributs_dossier1->dossier_id = $dossier->id;
-                    $attributs_dossier1->save();
+        if($request->file != null){
+            for($i=0;$i<count($request->file);$i++){
 
-                    if ($request->text_objet[$i] != "" ) {
+                            
+                    if($request->file[$i] != null){
+                    
+                
+                        $attributs_dossier1 = new Attributs_dossier();
+                        $attributs_dossier1->nom_champs  =  $request->nom_champ_file[$i];
+                        $attributs_dossier1->valeur      =  $request->file('file')[$i]->store('files') ;
+                        $attributs_dossier1->type_champs =   'Fichier' ;
+                        $attributs_dossier1->dossier_id  =   $dossier->id;
+                        $attributs_dossier1->save();
+
+
+                        if($attributs_dossier1->valeur != ''){
+
+                          
+                    
+                            $file =  new File_searche();
+                            $file->filename   =  $attributs_dossier1->nom_champs ;
+                            $file->content    =  $request->file_text[$i] ;
+                            $file->dossier_id =  $dossier->id;
+                            $file->attributs_dossiers_id =  $attributs_dossier1->id;
+                            $file->projet_id =  $request->id_organigramme ;
+                            $file->save();
+
+
+                           
+                           
                         
-                        $file_champ = new File_champ();
-                        $file_champ->champs_id =$attributs_dossier1->id;
-                        $file_champ->name_file =  $request->file("file")[$i]->store("files");
-                        $file_champ->file = $request->text_objet[$i];
-                        $file_champ->date = $request->date_file[$i];
-                        $file_champ->save();
+                            
+
+                        }
+                     
+                        
                     }
-                }
+                                
+                
+        
+
             }
+        }
     
         Session::flash('show_dossier','content');
 
@@ -449,6 +471,7 @@ class DossierController extends Controller
             $date = $createdAt->format("d/m/Y H:i:s");
 
             $all_historiques[] = [
+                "id" => $historique[$i]->id,
                 "user" => $historique[$i]->user,
                 "action" => $historique[$i]->action,
                 "date" => $date,
@@ -677,17 +700,18 @@ class DossierController extends Controller
                         $count_check_item_next++;
                     }
                 }
+                $all_dossiers[] = [
+                    "id" => $dossiers[$i]->id,
+                    "date" => $date,
+                    "titre" => $titre,
+                    "user" => $user->identifiant,
+                ];
+                $titre = "";
 
             }
            
 
-            $all_dossiers[] = [
-                "id" => $dossiers[$i]->id,
-                "date" => $date,
-                "titre" => $titre,
-                "user" => $user->identifiant,
-            ];
-            $titre = "";
+        
         }
 
         return Response()->json($all_dossiers);
@@ -1206,12 +1230,16 @@ class DossierController extends Controller
 
         $Request_delete_dossier->save();
 
+
+        
+
+
         return redirect("/show_dossier/" . $request->id_dossier);
     }
 
     public function save_file(Request $request)
     {
-    
+        $user = Auth::user();
 
 
         $file_champ = new File_champ();
@@ -1221,6 +1249,13 @@ class DossierController extends Controller
         $file_champ->date = $request->date;
         $file_champ->save();
 
+
+        $add_historique = new Historique_dossier();
+        $add_historique->user = $user->identifiant;
+        $add_historique->action = "ajouter une pièce";
+        $add_historique->dossier_id = $request->id_dossier  ;
+        $add_historique->save();
+
         Session::flash('file_add','content');
 
         return redirect("/show_dossier/" . $request->id_dossier);
@@ -1228,7 +1263,7 @@ class DossierController extends Controller
     public function delete_file(Request $request)
     {
     
-
+        $user = Auth::user();
 
         $file_champ =  File_champ::find($request->id_file);
 
@@ -1236,6 +1271,12 @@ class DossierController extends Controller
 
 
         $file_champ->delete();
+
+        $add_historique = new Historique_dossier();
+        $add_historique->user = $user->identifiant;
+        $add_historique->action = "suppression de la pièce";
+        $add_historique->dossier_id = $request->id_dossier    ;
+        $add_historique->save();
         
        // return redirect("/show_dossier/" . $request->id_dossier);
        return Response()->json(["etat" => true]);

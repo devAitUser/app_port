@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css">
@@ -34,41 +35,31 @@
    #organigramme_table_wrapper {
     margin-bottom: 15px;
    }
-
-   .styled-table thead tr {
-    background-color: #1d1d1d;
-
-    }
-    .panel-heading {
+   .panel-heading {
     width: 80% !important;
-     }
-
-     .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
-            border: 1px solid #ddd;
-            vertical-align: unset !important;
-        }
+   }
+   table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    
+        text-transform: uppercase;
+    }
 </style>
 
 
 
-      <div class="panel-heading">   
-        Les prets
-     </div>
+    
+      <div class="panel-heading">  Les plans de classements  </div>
       <div class="panel_view_details">
-        
          <div class="table_p">
 
             <div class="block_manager_datable">
-                <a href="{{route('prets_create')}}" class="create_organi">Créer un nouveau </a>
+                <a href="#" class="create_organi" aria-label="Close" data-toggle="modal" data-target="#exampleModal">creer un plan de classement </a>
             </div>
 
             <table id="organigramme_table" class=" table table-bordered text-center styled-table">
                <thead>
                    <tr>
-                       <th scope="col">Nom d'utilisateur</th>
-                       <th scope="col">Division</th>
-                       <th scope="col">email</th>
-                  
+                       <th scope="col">Num</th>
+                       <th scope="col">Nom plan de classement</th>
                        <th scope="col">Action  </th>
 
 
@@ -104,13 +95,71 @@
 
          </div>
 
-         
-
 
       </div>
 
 
-      <script src="{{asset('assets/js/datatables.min.js')}}"></script>
-      <script src="{{asset('assets/js/prets.js')}}"></script>
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form  method="post" action="{{url('create_organigramme')}}">
+            @csrf
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Créer un plan de classement</h5>
+          <button type="button" class="close" data-dismiss="modal" >
+
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="panel_pop_up">
+
+
+                    <div class="form-group">
+                      <label for="nom_organigramme"> Ajouter le plan de classement </label>
+                      <input type="text" class="form-control" name="nom_organigramme"  id="nom_organigramme"  placeholder="Nom du plan de classement" required="">
+
+                    </div>
+
+
+
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary">Créer</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <script src="{{asset('assets/js/datatables.min.js')}}"></script>
+      <script src="{{asset('assets/js/datatable_plan_classement.js')}}"></script>
 
 @endsection

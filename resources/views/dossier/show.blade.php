@@ -345,7 +345,7 @@
                                     <?php for($i=0;$i<count($attributs_dossier[$j]['child_files']);$i++){ ?>
                                        
                                        <tr>
-                                          <td><a style="text-decoration: none;" href="#" class="d-inline-flex  rounded"><?php echo $attributs_dossier[$j]['child_files'][$i]['file']   ?></a></td>
+                                          <td><a style="text-decoration: none;   color: #333 !important" href="#" class="d-inline-flex  rounded"><?php echo $attributs_dossier[$j]['child_files'][$i]['file']   ?></a></td>
                                           <td>
                                              {{ csrf_field() }}
                                              <input type="text" value="<?php echo $attributs_dossier[$j]['child_files'][$i]['id']   ?>" name='id_champs_file' hidden>
@@ -409,7 +409,8 @@
                   <table  id="organigramme_table" class=" table table-bordered text-center styled-table">
                      <thead>
                        <tr>
-          
+                       <th scope="col">   Numero</th>
+
                          <th scope="col">Utilisateur</th>
                          <th scope="col">Action </th>
                          <th scope="col">Date</th>
@@ -479,7 +480,7 @@
        </div>
        <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
-         <button type="submit" class="btn btn-primary">Validé</button>
+         <button type="submit" class="btn btn-primary">Valider</button>
        </div>
      </div>
    </form>
@@ -509,7 +510,7 @@
                <tr>
                   <td>Selectionner le fichier :  &nbsp;&nbsp;</td>
                   <td>
-
+                     <input id="id_dossier" type="text" name="id_champs_f" value="{{$id}}" hidden>
                      <input id="id_champs_f" type="text" name="id_champs_f" value="" hidden>
                      <input required="" class="form-control controle_file" type="file" name="file" placeholder="Choose file" id="file" onchange="load_name_File(event,3);" required>
                   </td>

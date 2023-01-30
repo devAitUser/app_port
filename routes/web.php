@@ -237,3 +237,8 @@ Route::post('/prets_store', [App\Http\Controllers\PretsController::class, 'store
 Route::get('/api_prets', [App\Http\Controllers\PretsController::class, 'api_pret']);
 
 Route::post('/prets_delete/{id}', [App\Http\Controllers\PretsController::class, 'delete']);
+
+/****inventaire****/
+
+Route::get('/inventaire', [App\Http\Controllers\InventaireController::class, 'index'])->name('inventaire');
+
